@@ -1,10 +1,10 @@
 /*******************************************************************************
-* 版权所有(C) Zhao Yu. 本软件遵循GPL协议。
-* 文件名称：luatable.cpp
-* 作　　者：ZhaoYu(icyplayer@126.com) <http://www.zhaoyu.me/>
-* 创建日期：2009年08月17日
-* 文件标识：7AD51E0F-23A2-4D47-A36E-B48F927F5E04
-* 内容摘要：
+* 版权所有(C) 本软件遵循GPL协议。
+* Filename		：luatable.cpp
+* Author			：ZhaoYu(icyplayer@126.com) <http://www.zhaoyu.me/>
+* Create Time	：2009年08月17日
+* GUID				：7AD51E0F-23A2-4D47-A36E-B48F927F5E04
+* Comments	：
 *******************************************************************************/
 
 #include "StdAfx.h"

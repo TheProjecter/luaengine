@@ -1,10 +1,10 @@
 /*******************************************************************************
-* 版权所有(C) Zhao Yu. 本软件遵循GPL协议。
-* 文件名称：luafunc.cpp
-* 作　　者：ZhaoYu(icyplayer@126.com) <http://www.zhaoyu.me/>
-* 创建日期：2009年08月17日
-* 文件标识：8809F554-D91B-4092-8D5A-BDD6A7709365
-* 内容摘要：
+* 版权所有(C) 本软件遵循GPL协议。
+* Filename		：luafunc.cpp
+* Author			：ZhaoYu(icyplayer@126.com) <http://www.zhaoyu.me/>
+* Create Time	：2009年08月17日
+* GUID				：8809F554-D91B-4092-8D5A-BDD6A7709365
+* Comments	：
 *******************************************************************************/
 
 #include "stdafx.h"

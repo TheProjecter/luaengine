@@ -1,10 +1,10 @@
 /*******************************************************************************
-* 版权所有(C) Zhao Yu. 本软件遵循GPL协议。
-* 文件名称：zlua.h
-* 作　　者：ZhaoYu(icyplayer@126.com) <http://www.zhaoyu.me/>
-* 创建日期：2009年08月24日 14时18分29秒
-* 文件标识：D9F78ACF-F1BF-48FB-B90C-54EA9FDCA1C7
-* 内容摘要：
+* 版权所有(C) 本软件遵循GPL协议。
+* Filename		：zlua.h
+* Author			：ZhaoYu(icyplayer@126.com) <http://www.zhaoyu.me/>
+* Create Time	：2009年08月24日 14时18分29秒
+* GUID				：D9F78ACF-F1BF-48FB-B90C-54EA9FDCA1C7
+* Comments	：
 *******************************************************************************/
 
 #include "luaenvironment.h"

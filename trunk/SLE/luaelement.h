@@ -1,10 +1,10 @@
 /*******************************************************************************
-* 版权所有(C) Zhao Yu. 本软件遵循GPL协议。
-* 文件名称：luaelement.h
-* 作　　者：ZhaoYu(icyplayer@126.com) <http://www.zhaoyu.me/>
-* 创建日期：2009年08月20日
-* 文件标识：3194A591-A506-4C08-AF6D-51D1AA388F2B
-* 内容摘要：
+* 版权所有(C) 本软件遵循GPL协议。
+* Filename		：luaelement.h
+* Author			：ZhaoYu(icyplayer@126.com) <http://www.zhaoyu.me/>
+* Create Time	：2009年08月20日
+* GUID				：3194A591-A506-4C08-AF6D-51D1AA388F2B
+* Comments	：
 *******************************************************************************/
 
 #pragma once

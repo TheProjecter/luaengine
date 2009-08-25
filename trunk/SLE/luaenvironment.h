@@ -1,10 +1,10 @@
 /*******************************************************************************
-* 版权所有(C) Zhao Yu. 本软件遵循GPL协议。
-* 文件名称：luaenvironment.h
-* 作　　者：ZhaoYu(icyplayer@126.com) <http://www.zhaoyu.me/>
-* 创建日期：2009年08月17日
-* 文件标识：FE8AAFB7-2ADF-47FB-9581-A7A85A29C342
-* 内容摘要：
+* 版权所有(C) 本软件遵循GPL协议。
+* Filename		：luaenvironment.h
+* Author			：ZhaoYu(icyplayer@126.com) <http://www.zhaoyu.me/>
+* Create Time	：2009年08月17日
+* GUID				：FE8AAFB7-2ADF-47FB-9581-A7A85A29C342
+* Comments	：
 *******************************************************************************/
 
 #pragma once
