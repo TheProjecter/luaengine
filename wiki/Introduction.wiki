@@ -1,14 +1,7 @@
-#summary One-sentence summary of this page.
+#summary Introduction of Standard Lua Engine
 #labels Featured,Phase-Design
 
-= Introduction =
-
-Add your content here.
-
-
-= Details =
-
-Add your content here.  Format your content with:
-  * Text in *bold* or _italic_
-  * Headings, paragraphs, and lists
-  * Automatic links to other wiki pages
+=简体中文=
+ * http://code.google.com/p/luaengine/wiki/introduction_cn
+=English=
+ * http://code.google.com/p/luaengine/wiki/introduction_en
