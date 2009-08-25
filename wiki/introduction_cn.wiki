@@ -1,7 +1,10 @@
+#summary Standard Lua Engine 简介
 #labels Phase-Design
 =简介=
-ZLuaEngine是Lua与C++进行交互的引擎库。
-它与luaplus，luabind等Lua库都不同，通过ZLuaEngine，能在C++中像访问C++函数、变量、对象一样访问Lua的函数、变量及table。由于Lua本身就是弱类型的语言，所以本库可以做到*自动识别*Lua支持的所有类型，而*无需使用模板*。
+Standard Lua Engine（简称SLE）提供了一组Lua与C++进行交互的标准接口，其规范与STL统一。
+
+它与luaplus，luabind等Lua库都不同，通过SLE，能在C++中像访问C++函数、变量、对象一样访问Lua的函数、变量及table。由于Lua本身就是弱类型的语言，所以本库可以做到*自动识别*Lua支持的所有类型，而*无需声明模板对象*。
+
 本库与平台和编译器无关。
 =示例=
 ==1、创建一个lua环境==
