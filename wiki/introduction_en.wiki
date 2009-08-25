@@ -1,3 +1,4 @@
+#summary Introduction of Standard Lua Engine
 #labels Phase-Design
 =Introduction=
 Standard Lua Engine (abbreviated as *SLE*) provides a library of standard interface for interact with Lua in C++. And its naming convention conforms to STL.
