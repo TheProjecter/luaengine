@@ -1,4 +1,4 @@
-#labels Phase-Design,Featured
+#labels Phase-Design
 =Introduction=
 Standard Lua Engine (abbreviated as *SLE*) provides a library of standard interface for interact with Lua in C++. And its naming convention conforms to STL.
 Not similar to other Lua Librarys(luaplus, luabind...), via SLE  we can use the syntax like C++ to access Lua functions, variables and tables. Lua is weakly typed language, so SLE also can *automatically identify the types supported by Lua, without using templates*. 
