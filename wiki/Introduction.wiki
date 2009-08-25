@@ -1,6 +1,5 @@
-#summary Introduction of Standard Lua Engine
+#summary Guide Page 页面向导
 #labels Featured,Phase-Design
-
 =简体中文=
  * http://code.google.com/p/luaengine/wiki/introduction_cn
 =English=
