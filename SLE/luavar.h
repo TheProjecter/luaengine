@@ -1,10 +1,10 @@
 /*******************************************************************************
-* 版权所有(C) Zhao Yu. 本软件遵循GPL协议。
-* 文件名称：luavar.h
-* 作　　者：ZhaoYu(icyplayer@126.com) <http://www.zhaoyu.me/>
-* 创建日期：2009年08月20日
-* 文件标识：631CCA32-B851-4ED0-A02D-416BB02DA3BC
-* 内容摘要：
+* 版权所有(C) 本软件遵循GPL协议。
+* Filename		：luavar.h
+* Author			：ZhaoYu(icyplayer@126.com) <http://www.zhaoyu.me/>
+* Create Time	：2009年08月20日
+* GUID				：631CCA32-B851-4ED0-A02D-416BB02DA3BC
+* Comments	：
 *******************************************************************************/
 
 #pragma once

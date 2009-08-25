@@ -1,10 +1,10 @@
 /*******************************************************************************
-* 版权所有(C) Zhao Yu. 本软件遵循GPL协议。
-* 文件名称：LuaValueHolder.cpp
-* 作　　者：ZhaoYu(icyplayer@126.com) <http://www.zhaoyu.me/>
-* 创建日期：2009年08月17日
-* 文件标识：FD175154-7265-43CB-A2E4-F7739CBCD8B0
-* 内容摘要：
+* 版权所有(C) 本软件遵循GPL协议。
+* Filename		：LuaValueHolder.cpp
+* Author			：ZhaoYu(icyplayer@126.com) <http://www.zhaoyu.me/>
+* Create Time	：2009年08月17日
+* GUID				：FD175154-7265-43CB-A2E4-F7739CBCD8B0
+* Comments	：
 *******************************************************************************/
 
 #include "StdAfx.h"

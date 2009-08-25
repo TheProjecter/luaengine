@@ -1,10 +1,10 @@
 /*******************************************************************************
-* 版权所有(C) Zhao Yu. 本软件遵循GPL协议。
-* 文件名称：luaelement.cpp
-* 作　　者：ZhaoYu(icyplayer@126.com) <http://www.zhaoyu.me/>
-* 创建日期：2009年08月20日
-* 文件标识：0DC2837B-DA31-4CFB-8E42-D425BF022F46
-* 内容摘要：
+* 版权所有(C) 本软件遵循GPL协议。
+* Filename		：luaelement.cpp
+* Author			：ZhaoYu(icyplayer@126.com) <http://www.zhaoyu.me/>
+* Create Time	：2009年08月20日
+* GUID				：0DC2837B-DA31-4CFB-8E42-D425BF022F46
+* Comments	：
 *******************************************************************************/
 
 #include "StdAfx.h"

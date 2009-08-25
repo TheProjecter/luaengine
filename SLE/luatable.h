@@ -1,10 +1,10 @@
 /*******************************************************************************
-* 版权所有(C) Zhao Yu. 本软件遵循GPL协议。
-* 文件名称：luatable.h
-* 作　　者：ZhaoYu(icyplayer@126.com) <http://www.zhaoyu.me/>
-* 创建日期：2009年08月17日
-* 文件标识：64C29307-C658-4590-BF06-5672D7F4CBA1
-* 内容摘要：
+* 版权所有(C) 本软件遵循GPL协议。
+* Filename		：luatable.h
+* Author			：ZhaoYu(icyplayer@126.com) <http://www.zhaoyu.me/>
+* Create Time	：2009年08月17日
+* GUID				：64C29307-C658-4590-BF06-5672D7F4CBA1
+* Comments	：
 *******************************************************************************/
 
 #pragma once

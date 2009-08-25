@@ -1,10 +1,10 @@
 /*******************************************************************************
-* 版权所有(C) Zhao Yu. 本软件遵循GPL协议。
-* 文件名称：stdafx.h
-* 作　　者：ZhaoYu(icyplayer@126.com) <http://www.zhaoyu.me/>
-* 创建日期：2009年08月17日
-* 文件标识：BFD48181-BCE4-4679-AB7A-28CFD7F2C7F2
-* 内容摘要：
+* 版权所有(C) 本软件遵循GPL协议。
+* Filename		：stdafx.h
+* Author			：ZhaoYu(icyplayer@126.com) <http://www.zhaoyu.me/>
+* Create Time	：2009年08月17日
+* GUID				：BFD48181-BCE4-4679-AB7A-28CFD7F2C7F2
+* Comments	：
 *******************************************************************************/
 
 #pragma once

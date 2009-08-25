@@ -1,10 +1,10 @@
 /*******************************************************************************
-* 版权所有(C) Zhao Yu. 本软件遵循GPL协议。
-* 文件名称：luaenvironment.cpp
-* 作　　者：ZhaoYu(icyplayer@126.com) <http://www.zhaoyu.me/>
-* 创建日期：2009年08月17日
-* 文件标识：BE34DB74-4F6D-419C-B377-961CD4E9B103
-* 内容摘要：
+* 版权所有(C) 本软件遵循GPL协议。
+* Filename		：luaenvironment.cpp
+* Author			：ZhaoYu(icyplayer@126.com) <http://www.zhaoyu.me/>
+* Create Time	：2009年08月17日
+* GUID				：BE34DB74-4F6D-419C-B377-961CD4E9B103
+* Comments	：
 *******************************************************************************/
 
 #include "StdAfx.h"

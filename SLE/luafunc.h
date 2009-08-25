@@ -1,10 +1,10 @@
 /*******************************************************************************
-* 版权所有(C) Zhao Yu. 本软件遵循GPL协议。
-* 文件名称：luafunc.h
-* 作　　者：ZhaoYu(icyplayer@126.com) <http://www.zhaoyu.me/>
-* 创建日期：2009年08月17日
-* 文件标识：4FDD0991-DCF4-48CA-93E0-1B2AE4300075
-* 内容摘要：
+* 版权所有(C) 本软件遵循GPL协议。
+* Filename		：luafunc.h
+* Author			：ZhaoYu(icyplayer@126.com) <http://www.zhaoyu.me/>
+* Create Time	：2009年08月17日
+* GUID				：4FDD0991-DCF4-48CA-93E0-1B2AE4300075
+* Comments	：
 *******************************************************************************/
 
 #pragma once

@@ -1,10 +1,10 @@
 /*******************************************************************************
-* 版权所有(C) Zhao Yu. 本软件遵循GPL协议。
-* 文件名称：luavar.cpp
-* 作　　者：ZhaoYu(icyplayer@126.com) <http://www.zhaoyu.me/>
-* 创建日期：2009年08月20日
-* 文件标识：B2ABD955-30D0-4B7F-A072-A36FD51303FC
-* 内容摘要：
+* 版权所有(C) 本软件遵循GPL协议。
+* Filename		：luavar.cpp
+* Author			：ZhaoYu(icyplayer@126.com) <http://www.zhaoyu.me/>
+* Create Time	：2009年08月20日
+* GUID				：B2ABD955-30D0-4B7F-A072-A36FD51303FC
+* Comments	：
 *******************************************************************************/
 
 #include "StdAfx.h"

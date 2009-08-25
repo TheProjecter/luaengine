@@ -1,10 +1,10 @@
 /*******************************************************************************
-* 版权所有(C) Zhao Yu. 本软件遵循GPL协议。
-* 文件名称：LuaStackPrase.h
-* 作　　者：ZhaoYu(icyplayer@126.com) <http://www.zhaoyu.me/>
-* 创建日期：2009年08月17日
-* 文件标识：AF973E30-6A37-4CBD-971E-056EA441AD4E
-* 内容摘要：
+* 版权所有(C) 本软件遵循GPL协议。
+* Filename		：LuaStackPrase.h
+* Author			：ZhaoYu(icyplayer@126.com) <http://www.zhaoyu.me/>
+* Create Time	：2009年08月17日
+* GUID				：AF973E30-6A37-4CBD-971E-056EA441AD4E
+* Comments	：
 *******************************************************************************/
 
 #pragma once
