@@ -1,4 +1,4 @@
-#labels Phase-Design,Featured
+#labels Phase-Design
 =简介=
 ZLuaEngine是Lua与C++进行交互的引擎库。
 它与luaplus，luabind等Lua库都不同，通过ZLuaEngine，能在C++中像访问C++函数、变量、对象一样访问Lua的函数、变量及table。由于Lua本身就是弱类型的语言，所以本库可以做到*自动识别*Lua支持的所有类型，而*无需使用模板*。
