@@ -6,8 +6,8 @@ ZLuaEngine是Lua与C++进行交互的引擎库。
 =示例=
 ==1、创建一个lua环境==
 {{{
-#include "zlua.h"
-using namespace Z;
+#include "sle.h"
+using namespace sle;
 luaenvironment e;
 e.dofile("c:\\test.lua");
 }}}
