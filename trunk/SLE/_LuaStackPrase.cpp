@@ -119,3 +119,33 @@ void _LuaStackPrase::pushvalue(luaelement& _v)
 {
 	_v._Push();
 }
+void _LuaStackPrase::pushvalue(char _v)
+{
+	pushvalue((int)_v);
+}
+void _LuaStackPrase::pushvalue(unsigned short _v)
+{
+	pushvalue((double)_v);
+}
+void _LuaStackPrase::pushvalue(unsigned long _v)
+{
+	pushvalue((double)_v);
+}
+void _LuaStackPrase::pushvalue(unsigned int _v)
+{
+	pushvalue((double)_v);
+}
+#ifdef _WIN32
+void _LuaStackPrase::pushvalue(__int64 _v)
+{
+	pushvalue((double)_v);
+}
+#endif// _WIN32
+
+#ifdef _WIN64
+void _LuaStackPrase::pushvalue(__int64 _v)
+{
+	pushvalue((int)_v);
+}
+#endif // _WIN64
+

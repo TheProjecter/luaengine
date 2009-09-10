@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 9.00
 # Visual Studio 2005
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "SLE", "SLE\SLE.vcproj", "{CAC19081-6A63-44DE-9E15-40435E88B43B}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Test", "Test\Test.vcproj", "{CCFA88BD-6379-46FB-A4E8-A633F5046BEA}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Test", "Test\Test.vcproj", "{DCF1E3C6-D352-4AD1-A070-34EF0D83E764}"
 	ProjectSection(ProjectDependencies) = postProject
 		{CAC19081-6A63-44DE-9E15-40435E88B43B} = {CAC19081-6A63-44DE-9E15-40435E88B43B}
 	EndProjectSection
@@ -18,10 +18,10 @@ Global
 		{CAC19081-6A63-44DE-9E15-40435E88B43B}.Debug|Win32.Build.0 = Debug|Win32
 		{CAC19081-6A63-44DE-9E15-40435E88B43B}.Release|Win32.ActiveCfg = Release|Win32
 		{CAC19081-6A63-44DE-9E15-40435E88B43B}.Release|Win32.Build.0 = Release|Win32
-		{CCFA88BD-6379-46FB-A4E8-A633F5046BEA}.Debug|Win32.ActiveCfg = Debug|Win32
-		{CCFA88BD-6379-46FB-A4E8-A633F5046BEA}.Debug|Win32.Build.0 = Debug|Win32
-		{CCFA88BD-6379-46FB-A4E8-A633F5046BEA}.Release|Win32.ActiveCfg = Release|Win32
-		{CCFA88BD-6379-46FB-A4E8-A633F5046BEA}.Release|Win32.Build.0 = Release|Win32
+		{DCF1E3C6-D352-4AD1-A070-34EF0D83E764}.Debug|Win32.ActiveCfg = Debug|Win32
+		{DCF1E3C6-D352-4AD1-A070-34EF0D83E764}.Debug|Win32.Build.0 = Debug|Win32
+		{DCF1E3C6-D352-4AD1-A070-34EF0D83E764}.Release|Win32.ActiveCfg = Release|Win32
+		{DCF1E3C6-D352-4AD1-A070-34EF0D83E764}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

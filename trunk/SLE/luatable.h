@@ -13,6 +13,7 @@
 #include "lua.hpp"
 #include "_LuaStackPrase.h"
 #include "luaenvironment.h"
+#define aux_getn(L,n)	(luaL_checktype(L, n, LUA_TTABLE), luaL_getn(L, n))
 namespace sle
 {
 	class EXPORT_CLASS luatable : public luaelement
@@ -23,36 +24,47 @@ namespace sle
 	public:
 		template <typename T>
 		void setvalue(size_t _idx, T _v);
+
 		template <typename T>
 		void setvalue(const char* _k, T _v);
+
+		template <typename T>
+		int insert(T _v);
+
 		_LuaValueHolder& getvalue(size_t _idx);
 		_LuaValueHolder& getvalue(const char *_k);
 		luavar operator[](size_t _idx);
 		luavar operator[](const char* _k);
 	protected:
-		template <typename K_T, typename V_T>
-		void _SetValue(K_T _k, V_T _v);
 	};
 
-	template <typename K_T, typename V_T>
-	void luatable::_SetValue(K_T _k, V_T _v)
-	{
-		_Push();
-		lua_pushstring(m_lpLuaEvrnt->luastate(), _k);
-		m_lpStackPrase->pushvalue(_v);
-		lua_settable(m_lpLuaEvrnt->luastate(), -3);
-		_Pop();
-		lua_pop(m_lpLuaEvrnt->luastate(), 1);
-	}
 	template <typename T>
 	void luatable::setvalue(const char* _k, T _v)
 	{
-		_SetValue(_k, _v);
+		_Push();
+		lua_pushstring(m_lpLuaEvrnt->luastate(), _k); 
+		m_lpStackPrase->pushvalue(_v);
+		lua_settable(m_lpLuaEvrnt->luastate(), -3);
+		_Pop();
 	}
 
 	template <typename T>
 	void luatable::setvalue(size_t _idx, T _v)
 	{
-		_SetValue(_idx, _v);
+		_Push();
+		lua_pushinteger(m_lpLuaEvrnt->luastate(), _idx); 
+		m_lpStackPrase->pushvalue(_v);
+		lua_settable(m_lpLuaEvrnt->luastate(), -3);
+		_Pop();
+	}
+
+	template <typename T>
+	int luatable::insert(T _v)
+	{
+		_Push();
+		int pos = aux_getn(m_lpLuaEvrnt->luastate(), 1) + 1;  /* first empty element */
+		_Pop();
+		setvalue(pos, _v);
+		return pos;
 	}
 }

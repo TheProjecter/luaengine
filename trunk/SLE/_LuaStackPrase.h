@@ -9,6 +9,7 @@
 
 #pragma once
 struct lua_State;
+
 namespace sle
 {
 	class luaenvironment;
@@ -28,7 +29,12 @@ namespace sle
 		virtual size_t get_rawsize(int _idx);
 		virtual int get_type(int _idx);
 		virtual void pushvalue(int _v);
+		virtual void pushvalue(__int64 _v);
 		virtual void pushvalue(double _v);
+		virtual void pushvalue(char _v);
+		virtual void pushvalue(unsigned short _v);
+		virtual void pushvalue(unsigned long _v);
+		virtual void pushvalue(unsigned int _v);
 		virtual void pushvalue(const char *lpstr);
 		virtual void pushvalue(bool _v);
 		virtual void pushvalue(luaelement& _v);

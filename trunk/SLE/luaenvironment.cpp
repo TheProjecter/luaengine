@@ -15,6 +15,7 @@
 #include "luatable.h"
 #include "luavar.h"
 using namespace sle;
+int luaenvironment::s_nTempTableId = 0;
 
 luaenvironment::luaenvironment(void) :
 	m_lpLuaState(NULL)
@@ -68,6 +69,17 @@ luatable luaenvironment::table(const char *szName)
 }
 luatable luaenvironment::newtable(const char *szName)
 {
+	luatable tbTmp = newtable();
+	luavar var(this, szName);
+	var = tbTmp;
+	luatable table(this, szName);
+	tbTmp.clear();
+	return table;
+}
+luatable luaenvironment::newtable()
+{
+	char szName[255] = {0};
+	_GenerateTempName(szName, 255);
 	lua_newtable(m_lpLuaState);
 	lua_setglobal(m_lpLuaState, szName);
 	luatable table(this, szName);
@@ -79,11 +91,17 @@ luavar luaenvironment::variable(const char *szName)
 	int nType = LUA_TNONE;
 	if (!var.verify())
 		ASSERT(false);
+	/*
 	nType = var.type();
 	ASSERT(nType == LUA_TNIL || nType == LUA_TNUMBER || nType == LUA_TSTRING || nType == LUA_TBOOLEAN);
+	*/
 	return var;
 }
 void luaenvironment::error(int nCode, const char* szDesp)
 {
 
+}
+void luaenvironment::_GenerateTempName(char * lpBuf, int nSize)
+{
+	sprintf_s(lpBuf, nSize, "sletemptb%d%d", rand()*10000, s_nTempTableId++);
 }

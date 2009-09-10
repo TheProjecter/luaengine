@@ -23,6 +23,8 @@ namespace sle
 	public:
 		template <typename T>
 		luavar& operator=(T _v);
+
+		virtual void clear();
 	public:
 		virtual operator int();
 		virtual operator double();
@@ -38,7 +40,7 @@ namespace sle
 	{
 		_PushWithoutKey();
 		m_lpStackPrase->pushvalue(_v);
-		if (m_nPushCount == 0)
+		if (_IsGlobal())
 		{
 			lua_setglobal(m_lpLuaEvrnt->luastate(), m_szName.c_str());
 			lua_pop(m_lpLuaEvrnt->luastate(), 1);

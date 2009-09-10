@@ -17,9 +17,9 @@ using namespace sle;
 #define CONSTRUCTOR_INIT \
 	m_nErrCode(0), \
 	m_szErrDesp(""), \
-	m_nPushCount(0), \
 	m_lpStackPrase(NULL), \
 	m_lpValueHolder(NULL)
+//m_nPushCount(0), \
 
 luaelement::luaelement(luaenvironment *lpLuaEvrnt, const char *szName) :
 	CONSTRUCTOR_INIT
@@ -47,7 +47,7 @@ void luaelement::_CopyObject(const luaelement& rhl)
 	m_nErrCode = rhl.m_nErrCode;
 	m_szErrDesp = rhl.m_szErrDesp;
 	m_szName = rhl.m_szName;
-	m_nPushCount = rhl.m_nPushCount;
+	//m_nPushCount = rhl.m_nPushCount;
 	m_lpStackPrase = new _LuaStackPrase(*rhl.m_lpStackPrase);
 	m_lpValueHolder = new _LuaValueHolder(*rhl.m_lpValueHolder);
 }
@@ -57,7 +57,7 @@ luaelement::~luaelement(void)
 	DELETE_POINTER(m_lpStackPrase);
 	DELETE_POINTER(m_lpValueHolder);
 	m_lpLuaEvrnt = NULL;
-	m_nPushCount = 0;
+	//m_nPushCount = 0;
 	m_szName.clear();
 	clearerr();
 }
@@ -79,7 +79,7 @@ int luaelement::type()
 	int nType = LUA_TNONE;
 	_Push();
 	nType = m_lpStackPrase->get_type(-1);
-	_Pop(1);
+	_Pop();
 	return nType;
 }
 bool luaelement::nil()
@@ -94,9 +94,14 @@ bool luaelement::verify()
 {
 	if (!_Push())
 		return false;
-	_Pop(1);
+	_Pop();
 	return true;
 }
+const char* luaelement::name()
+{
+	return m_szName.c_str();
+}
+
 bool luaelement::_Push()
 {
 	//TODO 用strtok线程不安全，有空自己写个实时的split
@@ -106,10 +111,9 @@ bool luaelement::_Push()
 	const char *szName = strtok(lpBuffer, ".");
 	if (szName != NULL)
 		lua_getglobal(m_lpLuaEvrnt->luastate(), szName);
-	m_nPushCount = 0;
+	//m_nPushCount = 0;
 	while ((szName = strtok(NULL, ".")) != NULL)
 	{
-		++m_nPushCount;
 		int nKey = atoi(szName);
 		if (nKey > 0 || strcmp(szName, "0") == 0)
 			lua_pushinteger(m_lpLuaEvrnt->luastate(), nKey);
@@ -125,13 +129,30 @@ bool luaelement::_Push()
 			break;
 		}
 		lua_rawget(m_lpLuaEvrnt->luastate(), -2);
+		lua_remove(m_lpLuaEvrnt->luastate(), -2);
 	}
 	DELETE_POINTER(lpBuffer);
 	return bRet;
 }
 void luaelement::_Pop(int nExtraPop)
 {
-	if (m_nPushCount + nExtraPop > 0)
-		lua_pop(m_lpLuaEvrnt->luastate(), m_nPushCount + nExtraPop);
-	m_nPushCount = 0; 
+	lua_pop(m_lpLuaEvrnt->luastate(), 1 + nExtraPop);
+}
+bool luaelement::_IsGlobal()
+{
+	int pos = m_szName.find('.');
+	return pos < 0;
+}
+void luaelement::clear()
+{
+	_Push();
+	lua_pushnil(m_lpLuaEvrnt->luastate()); //TODO:把pushnil方法封装到stackprase里面
+	if (_IsGlobal())
+	{
+		lua_setglobal(m_lpLuaEvrnt->luastate(), m_szName.c_str());
+		lua_pop(m_lpLuaEvrnt->luastate(), 1);
+	}
+	else
+		lua_settable(m_lpLuaEvrnt->luastate(), -3);
+	_Pop();
 }
