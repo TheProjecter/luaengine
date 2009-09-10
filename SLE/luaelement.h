@@ -32,10 +32,14 @@ namespace sle
 		virtual bool nil();
 		//检查当前域名是否合法，如果能正常push说明域名是合法的
 		virtual bool verify();
+		virtual const char *name();
+		//reset this value to nil
+		virtual void clear();
 	protected:
 		virtual void _CopyObject(const luaelement& rhl);
 		virtual bool _Push();
 		virtual void _Pop(int nExtraPop = 0);
+		virtual bool _IsGlobal();
 	protected:
 		luaenvironment *m_lpLuaEvrnt;
 		//完整的Lua名字，比如"T1.func1"，或者"tbTable.T1.x"
@@ -49,6 +53,6 @@ namespace sle
 		//lua堆栈解析器
 		_LuaStackPrase* m_lpStackPrase;
 		//保存进栈时的push次数
-		int m_nPushCount;
+		//int m_nPushCount;
 	};
 }

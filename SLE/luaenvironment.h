@@ -35,9 +35,13 @@ namespace sle
 		virtual luatable table(const char *szName);
 		virtual luavar variable(const char *szName);
 		virtual luatable newtable(const char *szName);
+		virtual luatable newtable();
+	protected:
+		virtual void _GenerateTempName(char * lpBuf, int nSize);
 	protected:
 		int m_nErrCode;
 		const char *m_nErrDesp;
 		lua_State *m_lpLuaState;
+		static int s_nTempTableId;
 	};
 }

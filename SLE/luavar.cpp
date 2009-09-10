@@ -30,10 +30,11 @@ bool luavar::_PushWithoutKey()
 	const char *szName = strtok(lpBuffer, ".");
 	if (szName != NULL)
 		lua_getglobal(m_lpLuaEvrnt->luastate(), szName);
-	m_nPushCount = 0;
+	//m_nPushCount = 0;
+	bool bFirst = true;
 	while ((szName = strtok(NULL, ".")) != NULL)
 	{
-		if (m_nPushCount != 0)
+		if (!bFirst)
 		{
 			int nType = m_lpStackPrase->get_type(-2);
 			//这里要判断，域名中间的某级为nil，说明当前域名是无效的，比如T1.T2.T3，而T2是nil，则无效
@@ -45,8 +46,10 @@ bool luavar::_PushWithoutKey()
 				break;
 			}
 			lua_rawget(m_lpLuaEvrnt->luastate(), -2);
+			lua_remove(m_lpLuaEvrnt->luastate(), -2);
 		}
-		++m_nPushCount;
+		//++m_nPushCount;
+		bFirst = false;
 		int nKey = atoi(szName);
 		if (nKey > 0)
 			lua_pushinteger(m_lpLuaEvrnt->luastate(), nKey);
@@ -63,7 +66,6 @@ luavar::operator int()
 	ASSERT(nType == LUA_TNUMBER);
 	double dValue = lua_tonumber(m_lpLuaEvrnt->luastate(), -1);
 	_Pop();
-	lua_pop(m_lpLuaEvrnt->luastate(), 1);
 	return (int)dValue;
 }
 luavar::operator double()
@@ -73,7 +75,6 @@ luavar::operator double()
 	ASSERT(nType == LUA_TNUMBER);
 	double dValue = lua_tonumber(m_lpLuaEvrnt->luastate(), -1);
 	_Pop();
-	lua_pop(m_lpLuaEvrnt->luastate(), 1);
 	return dValue;
 }
 luavar::operator bool()
@@ -83,7 +84,6 @@ luavar::operator bool()
 	ASSERT(nType == LUA_TBOOLEAN);
 	int bValue = lua_toboolean(m_lpLuaEvrnt->luastate(), -1);
 	_Pop();
-	lua_pop(m_lpLuaEvrnt->luastate(), 1);
 	return bValue != 0;
 }
 luavar::operator const char*()
@@ -93,6 +93,18 @@ luavar::operator const char*()
 	const char *szValue = lua_tostring(m_lpLuaEvrnt->luastate(), -1);
 	vHolder.setvalue(LUA_TNUMBER, szValue, strlen(szValue) + 1);
 	_Pop();
-	lua_pop(m_lpLuaEvrnt->luastate(), 1);
 	return vHolder;
+}
+void luavar::clear()
+{
+	_PushWithoutKey();
+	lua_pushnil(m_lpLuaEvrnt->luastate()); //TODO:把pushnil方法封装到stackprase里面
+	if (_IsGlobal())
+	{
+		lua_setglobal(m_lpLuaEvrnt->luastate(), m_szName.c_str());
+		lua_pop(m_lpLuaEvrnt->luastate(), 1);
+	}
+	else
+		lua_settable(m_lpLuaEvrnt->luastate(), -3);
+	_Pop();
 }
