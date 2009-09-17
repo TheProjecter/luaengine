@@ -57,6 +57,7 @@ luavar::operator const char*()
 	_Pop();
 	return *m_lpValueHolder;
 }
+/*
 void luavar::setnil()
 {
 	_PushWithoutKey();
@@ -69,3 +70,4 @@ void luavar::setnil()
 		lua_settable(m_lpLuaEvrnt->luastate(), -3);
 	_Pop();
 }
+*/
