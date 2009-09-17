@@ -24,17 +24,14 @@ namespace sle
 		template <typename T>
 		luavar& operator=(T _v);
 
-		virtual void clear();
+		virtual void setnil();
 	public:
 		virtual operator int();
 		virtual operator double();
 		virtual operator bool();
 		virtual operator const char*();
 	protected:
-		//这个push对域名的最后一个值（即key），不做rawget处理，因为要lua_settable
-		virtual bool _PushWithoutKey();
 	};
-
 	template <typename T>
 	luavar& luavar::operator=(T _v)
 	{
@@ -43,10 +40,11 @@ namespace sle
 		if (_IsGlobal())
 		{
 			lua_setglobal(m_lpLuaEvrnt->luastate(), m_szName.c_str());
-			lua_pop(m_lpLuaEvrnt->luastate(), 1);
 		}
 		else
+		{
 			lua_settable(m_lpLuaEvrnt->luastate(), -3);
+		}
 		_Pop();
 		return *this;
 	}

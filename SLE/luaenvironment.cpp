@@ -73,7 +73,7 @@ luatable luaenvironment::newtable(const char *szName)
 	luavar var(this, szName);
 	var = tbTmp;
 	luatable table(this, szName);
-	tbTmp.clear();
+	tbTmp.setnil();
 	return table;
 }
 luatable luaenvironment::newtable()

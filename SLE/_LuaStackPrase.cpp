@@ -37,6 +37,11 @@ const void* _LuaStackPrase::get_raw(int _idx)
 	int nType = lua_type(m_lpLuaEvrnt->luastate(), _idx);
 	switch (nType)
 	{
+	case LUA_TNIL:
+	{
+		m_lpBuffer = NULL;
+		break;
+	}
 	case LUA_TNUMBER:
 	{
 		LUA_NUMBER n = lua_tonumber(m_lpLuaEvrnt->luastate(), _idx);
@@ -59,6 +64,9 @@ size_t _LuaStackPrase::get_rawsize(int _idx)
 	size_t nSize = 0;
 	switch (nType)
 	{
+	case LUA_TNIL:
+		nSize = 0;
+		break;
 	case LUA_TNUMBER:
 		nSize = sizeof(LUA_NUMBER);
 		break;

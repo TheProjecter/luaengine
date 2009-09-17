@@ -27,7 +27,7 @@
 
 #define DELETE_POINTER(p) { if (p) delete p; p = NULL; }
 
-#define RETURN_ON_FAIL { ASSERT(false); return false; }
+#define RETURN_ON_FAIL(condiction) { if (!(condiction)) { ASSERT(false); return false; } }
 
 
 // TODO: reference additional headers your program requires here

@@ -178,6 +178,14 @@
 			UniqueIdentifier="{4FC737F1-C7A5-4376-A066-2A32D752A2FF}"
 			>
 			<File
+				RelativePath=".\_active.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\_LuaCallResultPraser.cpp"
+				>
+			</File>
+			<File
 				RelativePath=".\_LuaStackPrase.cpp"
 				>
 			</File>
@@ -195,6 +203,10 @@
 			</File>
 			<File
 				RelativePath=".\luafunc.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\luarets.cpp"
 				>
 			</File>
 			<File
@@ -236,6 +248,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\_LuaCallResultPraser.h"
+				>
+			</File>
+			<File
 				RelativePath=".\_LuaStackPrase.h"
 				>
 			</File>
@@ -253,6 +269,10 @@
 			</File>
 			<File
 				RelativePath=".\luafunc.h"
+				>
+			</File>
+			<File
+				RelativePath=".\luarets.h"
 				>
 			</File>
 			<File

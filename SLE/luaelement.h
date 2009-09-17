@@ -34,11 +34,13 @@ namespace sle
 		virtual bool verify();
 		virtual const char *name();
 		//reset this value to nil
-		virtual void clear();
+		virtual void setnil();
 	protected:
 		virtual void _CopyObject(const luaelement& rhl);
 		virtual bool _Push();
 		virtual void _Pop(int nExtraPop = 0);
+		//这个push对域名的最后一个值（即key），不做rawget处理，因为要lua_settable
+		virtual bool _PushWithoutKey();
 		virtual bool _IsGlobal();
 	protected:
 		luaenvironment *m_lpLuaEvrnt;
@@ -52,7 +54,7 @@ namespace sle
 		_LuaValueHolder* m_lpValueHolder;
 		//lua堆栈解析器
 		_LuaStackPrase* m_lpStackPrase;
-		//保存进栈时的push次数
-		//int m_nPushCount;
+		//指示上次push是否影响堆栈，及进栈的次数
+		int m_nPushCount;
 	};
 }
