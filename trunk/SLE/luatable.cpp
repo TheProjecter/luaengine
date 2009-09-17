@@ -33,8 +33,7 @@ _LuaValueHolder& luatable::getvalue(size_t _idx)
 	lua_pushinteger(m_lpLuaEvrnt->luastate(), _idx);
 	lua_gettable(m_lpLuaEvrnt->luastate(), -2);
 	m_lpValueHolder->setvalue(m_lpStackPrase->get_type(-1), m_lpStackPrase->get_raw(-1), m_lpStackPrase->get_rawsize(-1));
-	lua_pop(m_lpLuaEvrnt->luastate(), 2);
-	_Pop();
+	_Pop(1);
 	return *m_lpValueHolder;
 }
 _LuaValueHolder& luatable::getvalue(const char *_k)
@@ -43,8 +42,7 @@ _LuaValueHolder& luatable::getvalue(const char *_k)
 	lua_pushstring(m_lpLuaEvrnt->luastate(), _k);
 	lua_gettable(m_lpLuaEvrnt->luastate(), -2);
 	m_lpValueHolder->setvalue(m_lpStackPrase->get_type(-1), m_lpStackPrase->get_raw(-1), m_lpStackPrase->get_rawsize(-1));
-	lua_pop(m_lpLuaEvrnt->luastate(), 2);
-	_Pop();
+	_Pop(1);
 	return *m_lpValueHolder;
 }
 luavar luatable::operator[](size_t _idx)

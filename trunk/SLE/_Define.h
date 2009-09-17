@@ -8,3 +8,4 @@
 *******************************************************************************/
 
 #define EXPORT_CLASS _declspec(dllexport)
+#define MAX_RETURN_COUNT 10
