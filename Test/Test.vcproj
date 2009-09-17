@@ -225,6 +225,10 @@
 			RelativePath=".\ReadMe.txt"
 			>
 		</File>
+		<File
+			RelativePath=".\test.lua"
+			>
+		</File>
 	</Files>
 	<Globals>
 	</Globals>

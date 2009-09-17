@@ -7,58 +7,205 @@
 #include <string>
 using namespace sle;
 using namespace std;
+
+//test global variables rw
+bool test0(luaenvironment &e)
+{
+	int n;
+	string s;
+	luavar gVar1 = e.variable("gVar1");
+	luavar gVar2 = e.variable("gVar2");
+	n = gVar1;
+	s = gVar2;
+	RETURN_ON_FAIL(n == 10);
+	RETURN_ON_FAIL(s == "asdf");
+	gVar1 = 9;
+	gVar2 = "fdsa";
+	n = gVar1;
+	s = gVar2;
+	RETURN_ON_FAIL(n == 9);
+	RETURN_ON_FAIL(s == "fdsa");
+	return true;
+}
+
+
+//test call global functions
+bool test1(luaenvironment &e)
+{
+	int a = 10;
+	double b = 22.5;
+	double c = 0;
+	string s;
+	luafunc test1 = e.func("test1");
+	luafunc test2 = e.func("test2");
+	luafunc test_retnil = e.func("test_retnil");
+	c = test1(a, b);
+	RETURN_ON_FAIL(c == 32.5);
+	s = test2("a", "b");
+	RETURN_ON_FAIL(s == "ab");
+	test_retnil();
+	return true;
+}
+
+//test call table functions
+bool test2(luaenvironment &e)
+{
+	int a = 10;
+	double b = 22.5;
+	double c = 0;
+	string s;
+	luafunc test1 = e.func("tbFunc.test1");
+	luafunc test2 = e.func("tbFunc.test2");
+	c = test1(a, b);
+	RETURN_ON_FAIL(c == 32.5);
+	s = test2("a", "b", "ccc");
+	RETURN_ON_FAIL(s == "abccc");
+	return true;
+}
+
+//test table variables r - string index
+bool test3(luaenvironment &e)
+{
+	int n;
+	string s;
+	luatable tbT1 = e.table("tbT1");
+	n = tbT1["a"];
+	RETURN_ON_FAIL(n == 1);
+	n = tbT1.getvalue("a");
+	RETURN_ON_FAIL(n == 1);
+	s = tbT1["c"];
+	RETURN_ON_FAIL(s == "fdsa");
+	s = tbT1.getvalue("c");
+	RETURN_ON_FAIL(s == "fdsa");
+	return true;
+}
+
+//test table variables w - string index
+bool test4(luaenvironment &e)
+{
+	int n;
+	string s;
+	luatable tbT1 = e.table("tbT1");
+	tbT1["a"] = 10;
+	n = tbT1["a"];
+	RETURN_ON_FAIL(n == 10);
+
+	tbT1.setvalue("a", 20);
+	n = tbT1["a"];
+	RETURN_ON_FAIL(n == 20);
+
+	tbT1["c"] = "aaa";
+	s = tbT1["c"];
+	RETURN_ON_FAIL(s == "aaa");
+
+	tbT1.setvalue("c", "bbb");
+	s = tbT1["c"];
+	RETURN_ON_FAIL(s == "bbb");
+	return true;
+}
+
+//test table variables r - int index
+bool test5(luaenvironment &e)
+{
+	int n;
+	string s;
+	luatable tbT2 = e.table("tbT2");
+	n = tbT2[1];
+	RETURN_ON_FAIL(n == 2);
+	n = tbT2.getvalue(3);
+	RETURN_ON_FAIL(n == 3);
+
+	s = tbT2[2];
+	RETURN_ON_FAIL(s == "aaa");
+	s = tbT2.getvalue(4);
+	RETURN_ON_FAIL(s == "bbb");
+	return true;
+}
+
+//test table variables w - int index
+bool test6(luaenvironment &e)
+{
+	int n;
+	string s;
+	luatable tbT2 = e.table("tbT2");
+	tbT2[1] = 10;
+	n = tbT2[1];
+	RETURN_ON_FAIL(n == 10);
+
+	tbT2.setvalue(3, 20);
+	n = tbT2[3];
+	RETURN_ON_FAIL(n == 20);
+
+	tbT2[2] = "ccc";
+	s = tbT2[2];
+	RETURN_ON_FAIL(s == "ccc");
+
+	tbT2.setvalue(4, "qqq");
+	s = tbT2[4];
+	RETURN_ON_FAIL(s == "qqq");
+	return true;
+}
+
+// test access table in table
+bool test7(luaenvironment &e)
+{
+	luatable tbT3T1 = e.table("tbT3.tbT3T1");
+	luatable tbT3T1T1 = e.table("tbT3.tbT3T1.tbT3T1T1");
+	int n;
+	n = tbT3T1["a"];
+	RETURN_ON_FAIL(n == 11);
+	n = tbT3T1T1["a"];
+	RETURN_ON_FAIL(n == 22);
+	return true;
+}
+//test create table
+bool test8(luaenvironment &e)
+{
+	luatable tb = e.newtable();
+	luatable tb1 = e.newtable("tbT3.tbT3T1.tbT3T1T2");
+	luafunc f = e.func("test_getlen");
+	int n;
+	tb[1] = 1;
+	tb[2] = 2;
+	tb[3] = 3;
+	tb1[1] = 1;
+	tb1[2] = 2;
+	tb1[3] = 3;
+	n = f(tb);
+	RETURN_ON_FAIL(n == 3);
+	n = f(tb1);
+	RETURN_ON_FAIL(n == 3);
+	tb.setnil();
+	RETURN_ON_FAIL(tb.nil());
+	tb1.setnil();
+	n = tb1.type();
+	RETURN_ON_FAIL(tb1.nil());
+	return true;
+}
+//test invalid values
+bool test9(luaenvironment &e)
+{/*
+	luafunc f = e.func("asdfdfdf");
+	f();
+	f = e.func("tbT1.dfdfda");
+	f();*/
+
+	return true;
+}
+bool (*testfunc[])(luaenvironment&) = {test0, test1, test2, test3, test4, test5, test6, test7, test8, test9};
 int _tmain(int argc, _TCHAR* argv[])
 {
-	luaenvironment ee;
-	bool b;
-	double d;
-	int n = 0;
-	ee.init();
-	ee.dofile("c:\\test.lua");
-	n = lua_gettop(ee.luastate());
-	ee.dostring("tbRole={ tbBase={}, tbFightSkill={}, tbLifeSkill={}, tbTask={}, tbItem={}, tbState={}, tbCustom={}, tbRecipe={} };");
-	n = lua_gettop(ee.luastate());
-	luatable t1 = ee.table("T2");
-	t1.clear();
-	b = t1.nil();
-	luatable nt = ee.newtable();
-	nt.insert(10);
-	nt["a"] = 99;
-	d = nt["a"];
-	t1.insert(nt);
-	n = lua_gettop(ee.luastate());
-	nt.clear();
-	n = lua_gettop(ee.luastate());
-	n =t1.insert(2);
-	d = t1[2];
-	t1 =  ee.table("T2");
-	n =t1.insert(20);
-	d = t1[4];
-	n = lua_gettop(ee.luastate());
-	luavar v = ee.variable("T1.TT1.1");
-	n = lua_gettop(ee.luastate());
-	d = t1[3];
-	n = lua_gettop(ee.luastate());
-	d = v;
-	n = lua_gettop(ee.luastate());
-	v = 10;
-	d = v;
-	n = lua_gettop(ee.luastate());
-	b = t1.verify();
-	b = t1.nil();
-	n = lua_gettop(ee.luastate());
-	/*luatable nt = ee.newtable();
-	nt["asdf"] = 10;
-	nt["dd"] = "asdf";*/
-	//t1.insert(10);
-	//t1.insert(nt);
-	//t1 =  ee.table("tbRole.tbFightSkill.1");
-	//d = t1["asdf"];
-	luafunc f = ee.func("getlen");
-	n = lua_gettop(ee.luastate());
-	d = f(t1);
-	n = lua_gettop(ee.luastate());
+	luaenvironment e;
+	int n;
+	e.init();
+	n = e.dofile("e:\\temp\\test.lua");
+	for (int i = 0; i <10; i++)
+	{
+		ASSERT(testfunc[i](e));
+		n = lua_gettop(e.luastate());
+		ASSERT(n == 0);
+	}
+	
 
 	return 0;
 }
-

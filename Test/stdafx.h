@@ -12,6 +12,15 @@
 #include <stdio.h>
 #include <tchar.h>
 
+#include <assert.h>
+#define ASSERT(arg) assert(arg)
+
+/*
+#define CHECK_POINTER(p)	if (!p) ASSERT(false);
+
+#define DELETE_POINTER(p) { if (p) delete p; p = NULL; }
+*/
+#define RETURN_ON_FAIL(condiction) { if (!(condiction)) { ASSERT(false); return false; } }
 
 
 // TODO: reference additional headers your program requires here
