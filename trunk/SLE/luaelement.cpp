@@ -187,7 +187,7 @@ void luaelement::_Pop(int nExtraPop)
 
 bool luaelement::_IsGlobal()
 {
-	int pos = m_szName.find('.');
+	int pos = (int)m_szName.find('.');
 	return pos < 0;
 }
 

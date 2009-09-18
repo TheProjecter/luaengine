@@ -12,7 +12,6 @@
 #include "luaelement.h"
 #include "_LuaStackPrase.h"
 #include "luaenvironment.h"
-#define aux_getn(L,n)	(luaL_checktype(L, n, LUA_TTABLE), luaL_getn(L, n))
 namespace sle
 {
 	class EXPORT_CLASS luatable : public luaelement
@@ -32,6 +31,7 @@ namespace sle
 		luavar operator[](size_t _idx);
 		luavar operator[](const char* _k);
 	protected:
+		int _GetFirstEmptyPos();
 	};
 
 	template <typename T_K, typename T_V>
@@ -47,9 +47,7 @@ namespace sle
 	template <typename T>
 	int luatable::insert(T _v)
 	{
-		_Push();
-		int pos = aux_getn(m_lpLuaEvrnt->luastate(), 1) + 1;  /* first empty element */
-		_Pop();
+		int pos = _GetFirstEmptyPos();
 		setvalue(pos, _v);
 		return pos;
 	}

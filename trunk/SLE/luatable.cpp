@@ -15,8 +15,10 @@
 #include "luavar.h"
 #include <string>
 #include "lua.hpp"
+#define aux_getn(L,n)	(luaL_checktype(L, n, LUA_TTABLE), luaL_getn(L, n))
 using namespace sle;
 using namespace std;
+
 luatable::luatable(luaenvironment *lpLuaEvrnt, const char *szName) :
 	luaelement(lpLuaEvrnt, szName)
 {
@@ -51,7 +53,7 @@ luavar luatable::operator[](size_t _idx)
 {
 	char szBuf[255];
 	itoa((int)_idx, szBuf, 10);
-	std::string szName = m_szName;
+	string szName = m_szName;
 	szName.append(".");
 	szName.append(szBuf);
 	luavar var = m_lpLuaEvrnt->variable(szName.c_str());
@@ -59,9 +61,16 @@ luavar luatable::operator[](size_t _idx)
 }
 luavar luatable::operator[](const char* _k)
 {
-	std::string szName = m_szName;
+	string szName = m_szName;
 	szName.append(".");
 	szName.append(_k);
 	luavar var = m_lpLuaEvrnt->variable(szName.c_str());
 	return var;
+}
+int luatable::_GetFirstEmptyPos()
+{
+	_Push();
+	int pos = aux_getn(m_lpLuaEvrnt->luastate(), 1) + 1;  /* first empty element */
+	_Pop();
+	return pos;
 }
