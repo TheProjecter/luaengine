@@ -39,6 +39,10 @@ luaelement& luaelement::operator=(const luaelement& rhl)
 	_CopyObject(rhl);
 	return *this;
 }
+bool luaelement::operator==(const luaelement &rhl) const
+{
+	return false;
+}
 void luaelement::_CopyObject(const luaelement& rhl)
 {
 	DELETE_POINTER(m_lpStackPrase);
@@ -201,23 +205,11 @@ void luaelement::setnil()
 	lua_pushnil(m_lpLuaEvrnt->luastate()); //TODO:把pushnil方法封装到stackprase里面
 	if (_IsGlobal())
 	{
-		lua_setglobal(m_lpLuaEvrnt->luastate(), m_szName.c_str());
+		m_lpLuaEvrnt->_SetGlobal(m_szName.c_str());
 	}
 	else
 	{
-		lua_settable(m_lpLuaEvrnt->luastate(), -3);
+		m_lpLuaEvrnt->_SetTable(-3);
 	}
 	_Pop();
-	/*
-	_Push();
-	lua_pushnil(m_lpLuaEvrnt->luastate()); //TODO:把pushnil方法封装到stackprase里面
-	//if (_IsGlobal())
-	{
-		lua_setglobal(m_lpLuaEvrnt->luastate(), m_szName.c_str());
-		_Pop();
-	}/*
-	else
-		lua_settable(m_lpLuaEvrnt->luastate(), -2);
-	int n = lua_gettop(m_lpLuaEvrnt->luastate());
-	n = lua_gettop(m_lpLuaEvrnt->luastate());*/
 }

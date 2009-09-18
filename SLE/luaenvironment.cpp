@@ -24,6 +24,25 @@ luaenvironment::luaenvironment(void) :
 
 luaenvironment::~luaenvironment(void)
 {
+	close();
+}
+luaenvironment& luaenvironment::operator=(const luaenvironment &rhl)
+{
+	return *this;
+}
+bool luaenvironment::operator==(const luaenvironment &rhl) const
+{
+	return m_lpLuaState == rhl.m_lpLuaState;
+}
+bool luaenvironment::close()
+{
+	if (m_lpLuaState)
+	{
+		lua_close(m_lpLuaState);
+		m_lpLuaState = NULL;
+		return true;
+	}
+	return false;
 }
 bool luaenvironment::init()
 {
@@ -34,15 +53,15 @@ bool luaenvironment::init()
 	lua_settop(m_lpLuaState, 0);
 	return error == 0;
 }
-bool luaenvironment::dofile(const char *szFilename)
+bool luaenvironment::dofile(const char *szFilename) const
 {
 	return 	luaL_dofile(m_lpLuaState, szFilename);
 }
-bool luaenvironment::dostring(const char *szSource)
+bool luaenvironment::dostring(const char *szSource) const
 {
 	return luaL_dostring(m_lpLuaState, szSource);
 }
-lua_State* luaenvironment::luastate()
+lua_State* luaenvironment::luastate() const
 {
 	return m_lpLuaState;
 }
@@ -97,6 +116,7 @@ void luaenvironment::error(int nCode, const char* szDesp)
 {
 
 }
+/*
 int luaenvironment::__IncTabRef(const char *szName)
 {
 	return m_lpTempTableManager->increase(szName);
@@ -104,16 +124,17 @@ int luaenvironment::__IncTabRef(const char *szName)
 int luaenvironment::__DecTabRef(const char *szName)
 {
 	return m_lpTempTableManager->increase(szName);
-}
-int luaenvironment::gettop()
+}*/
+
+int luaenvironment::gettop() const
 {
 	return lua_gettop(m_lpLuaState);
 }
-void luaenvironment::_SetGlobal(const char *lpszName)
+void luaenvironment::_SetGlobal(const char *lpszName) const
 {
 	lua_setglobal(m_lpLuaState, lpszName);
 }
-void luaenvironment::_SetTable(int _idx)
+void luaenvironment::_SetTable(int _idx) const
 {
 	lua_settable(m_lpLuaState, _idx);
 }
