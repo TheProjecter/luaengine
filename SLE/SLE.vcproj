@@ -182,10 +182,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\_LuaCallResultPraser.cpp"
-				>
-			</File>
-			<File
 				RelativePath=".\_LuaStackPrase.cpp"
 				>
 			</File>
@@ -245,10 +241,6 @@
 			>
 			<File
 				RelativePath=".\_Define.h"
-				>
-			</File>
-			<File
-				RelativePath=".\_LuaCallResultPraser.h"
 				>
 			</File>
 			<File

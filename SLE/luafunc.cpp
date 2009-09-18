@@ -24,7 +24,7 @@ luafunc::luafunc(luaenvironment *lpluaevt, const char *szName) :
 	luaelement(lpluaevt, szName),
 	m_lpLuarets(NULL)
 {
-	m_lpLuarets = new luarets(lpluaevt);
+	m_lpLuarets = new _luarets(lpluaevt);
 }
 luafunc::luafunc(const luafunc &rhl) :
 	luaelement(rhl),
@@ -41,14 +41,14 @@ void luafunc::_CopyObject(const luafunc &rhl)
 {
 	DELETE_POINTER(m_lpLuarets);
 	//m_lpLuarets不需要复制，因为每次CallLua后，m_lpLuarets都会刷新
-	m_lpLuarets = new luarets(rhl.m_lpLuaEvrnt);
+	m_lpLuarets = new _luarets(rhl.m_lpLuaEvrnt);
 	luaelement::_CopyObject(rhl);
 }
 luafunc::~luafunc(void)
 {
 	DELETE_POINTER(m_lpLuarets);
 }
-luarets& luafunc::_Call(int nargs, int nresults)
+_luarets& luafunc::_Call(int nargs, int nresults)
 {
 	clearerr();
 	m_nErrCode = lua_pcall(m_lpLuaEvrnt->luastate(), nargs, MAX_RETURN_COUNT, 0);
