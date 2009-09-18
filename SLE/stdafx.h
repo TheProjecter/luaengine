@@ -32,3 +32,4 @@
 
 // TODO: reference additional headers your program requires here
 void* _copypointer(const void *lpsrc, size_t nsize);
+void _GenerateTempName(char * lpBuf, int nSize);

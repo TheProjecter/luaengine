@@ -32,7 +32,8 @@ _LuaValueHolder& luatable::getvalue(size_t _idx)
 	_Push();
 	lua_pushinteger(m_lpLuaEvrnt->luastate(), _idx);
 	lua_gettable(m_lpLuaEvrnt->luastate(), -2);
-	m_lpValueHolder->setvalue(m_lpStackPrase->get_type(-1), m_lpStackPrase->get_raw(-1), m_lpStackPrase->get_rawsize(-1));
+	//m_lpValueHolder->setvalue(m_lpStackPrase->get_type(-1), m_lpStackPrase->get_raw(-1), m_lpStackPrase->get_rawsize(-1));
+	m_lpValueHolder->setvalue(-1);
 	_Pop(1);
 	return *m_lpValueHolder;
 }
@@ -41,7 +42,8 @@ _LuaValueHolder& luatable::getvalue(const char *_k)
 	_Push();
 	lua_pushstring(m_lpLuaEvrnt->luastate(), _k);
 	lua_gettable(m_lpLuaEvrnt->luastate(), -2);
-	m_lpValueHolder->setvalue(m_lpStackPrase->get_type(-1), m_lpStackPrase->get_raw(-1), m_lpStackPrase->get_rawsize(-1));
+	//m_lpValueHolder->setvalue(m_lpStackPrase->get_type(-1), m_lpStackPrase->get_raw(-1), m_lpStackPrase->get_rawsize(-1));
+	m_lpValueHolder->setvalue(-1);
 	_Pop(1);
 	return *m_lpValueHolder;
 }

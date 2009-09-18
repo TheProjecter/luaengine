@@ -14,8 +14,8 @@
 #include "luafunc.h"
 #include "luatable.h"
 #include "luavar.h"
+#include "_TempTableManager.h"
 using namespace sle;
-int luaenvironment::s_nTempTableId = 0;
 
 luaenvironment::luaenvironment(void) :
 	m_lpLuaState(NULL)
@@ -91,17 +91,17 @@ luavar luaenvironment::variable(const char *szName)
 	int nType = LUA_TNONE;
 	if (!var.verify())
 		ASSERT(false);
-	/*
-	nType = var.type();
-	ASSERT(nType == LUA_TNIL || nType == LUA_TNUMBER || nType == LUA_TSTRING || nType == LUA_TBOOLEAN);
-	*/
 	return var;
 }
 void luaenvironment::error(int nCode, const char* szDesp)
 {
 
 }
-void luaenvironment::_GenerateTempName(char * lpBuf, int nSize)
+int luaenvironment::__IncTabRef(const char *szName)
 {
-	sprintf_s(lpBuf, nSize, "sletemptb%d%d", rand()*10000, s_nTempTableId++);
+	return m_lpTempTableManager->increase(szName);
+}
+int luaenvironment::__DecTabRef(const char *szName)
+{
+	return m_lpTempTableManager->increase(szName);
 }
