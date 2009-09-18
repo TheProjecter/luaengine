@@ -32,34 +32,36 @@ namespace sle
 
 	#define DECLARE_INVOKE_METHOD(ARG_NUMBER) \
 		template <DECLARE_TYPENAME##ARG_NUMBER> \
-		_LuaValueHolder& invoke(DECLARE_ARG##ARG_NUMBER) \
+		luarets& invoke(DECLARE_ARG##ARG_NUMBER) \
 		{ \
 			_Push(); \
 			PUSH_VALUE##ARG_NUMBER \
 			return _Call(ARG_NUMBER, 1); \
 		} \
 		template <DECLARE_TYPENAME##ARG_NUMBER> \
-		_LuaValueHolder& operator()(DECLARE_ARG##ARG_NUMBER) \
+		luarets& operator()(DECLARE_ARG##ARG_NUMBER) \
 		{ \
 			_Push(); \
 			PUSH_VALUE##ARG_NUMBER \
 			return _Call(ARG_NUMBER, 1); \
 		}
-
+	class luarets;
 	//////////////////////////////////////////////////////////////////////////
 	class EXPORT_CLASS luafunc : public luaelement
 	{
 	public:
 		luafunc(luaenvironment *lpluaevt, const char *szName);
+		luafunc(const luafunc &rhl);
+		luafunc& operator=(const luafunc &rhl);
 		virtual ~luafunc(void);
 	public:
 		//没有参数的函数调用
-		_LuaValueHolder& invoke()
+		luarets& invoke()
 		{
 			_Push();
 			return _Call(0, 1);
 		}
-		_LuaValueHolder& operator()()
+		luarets& operator()()
 		{
 			return invoke();
 		}
@@ -69,7 +71,10 @@ namespace sle
 		DECLARE_INVOKE_METHOD(4)
 		DECLARE_INVOKE_METHOD(5)
 	protected:
+		virtual void _CopyObject(const luafunc &rhl);
 		//调用函数，并处理错误
-		virtual _LuaValueHolder& _Call(int nargs, int nresults);
+		virtual luarets& _Call(int nargs, int nresults);
+	protected:
+		luarets *m_lpLuarets;
 	};
 }

@@ -12,3 +12,4 @@
 #include "luavar.h"
 #include "luafunc.h"
 #include "luatable.h"
+#include "luarets.h"
