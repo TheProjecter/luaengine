@@ -22,7 +22,8 @@ namespace sle
 	public:
 		luaelement(luaenvironment *lpLuaEvrnt, const char *szName);
 		luaelement(const luaelement& rhl);
-		virtual luaelement& operator=(const luaelement& rhl);
+		virtual luaelement& operator=(const luaelement &rhl);
+		virtual bool operator==(const luaelement &rhl) const;
 		virtual ~luaelement(void);
 	public:
 		virtual int lasterr();

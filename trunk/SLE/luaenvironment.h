@@ -24,12 +24,16 @@ namespace sle
 		friend luaelement;
 	public:
 		luaenvironment(void);
+		virtual bool operator==(const luaenvironment &rhl) const;
 		virtual ~luaenvironment(void);
+	private:
+		virtual luaenvironment& operator=(const luaenvironment &rhl);
 	public:
 		virtual bool init();
-		virtual bool dofile(const char *szFilename);
-		virtual bool dostring(const char *szSource);
-		virtual lua_State *luastate();
+		virtual bool close();
+		virtual bool dofile(const char *szFilename) const;
+		virtual bool dostring(const char *szSource) const;
+		virtual lua_State *luastate() const;
 		//每当出错，都会回调到这里
 		virtual void error(int nCode, const char* szDesp);
 		virtual luaelement element(const char *szName);
@@ -38,17 +42,17 @@ namespace sle
 		virtual luavar variable(const char *szName);
 		virtual luatable newtable(const char *szName);
 		virtual luatable newtable();
-		virtual int gettop();
-		virtual int __IncTabRef(const char *szName);
-		virtual int __DecTabRef(const char *szName);
+		virtual int gettop() const;
+		//virtual int __IncTabRef(const char *szName);
+		//virtual int __DecTabRef(const char *szName);
 
-		virtual void _SetGlobal(const char *lpszName);
-		virtual void _SetTable(int _idx);
+		virtual void _SetGlobal(const char *lpszName) const;
+		virtual void _SetTable(int _idx) const;
 
 	protected:
 		int m_nErrCode;
 		const char *m_nErrDesp;
 		lua_State *m_lpLuaState;
-		_TempTableManager *m_lpTempTableManager;
+		//_TempTableManager *m_lpTempTableManager;
 	};
 }
