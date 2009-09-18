@@ -12,7 +12,7 @@
 #include "luaelement.h"
 #include "luaenvironment.h"
 #include "_LuaStackPrase.h"
-#include "lua.hpp"
+
 namespace sle
 {
 	class EXPORT_CLASS luavar : public luaelement
@@ -39,11 +39,11 @@ namespace sle
 		m_lpStackPrase->pushvalue(_v);
 		if (_IsGlobal())
 		{
-			lua_setglobal(m_lpLuaEvrnt->luastate(), m_szName.c_str());
+			m_lpLuaEvrnt->_SetGlobal(m_szName.c_str());
 		}
 		else
 		{
-			lua_settable(m_lpLuaEvrnt->luastate(), -3);
+			m_lpLuaEvrnt->_SetTable(-3);
 		}
 		_Pop();
 		return *this;

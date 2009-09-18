@@ -105,3 +105,15 @@ int luaenvironment::__DecTabRef(const char *szName)
 {
 	return m_lpTempTableManager->increase(szName);
 }
+int luaenvironment::gettop()
+{
+	return lua_gettop(m_lpLuaState);
+}
+void luaenvironment::_SetGlobal(const char *lpszName)
+{
+	lua_setglobal(m_lpLuaState, lpszName);
+}
+void luaenvironment::_SetTable(int _idx)
+{
+	lua_settable(m_lpLuaState, _idx);
+}
