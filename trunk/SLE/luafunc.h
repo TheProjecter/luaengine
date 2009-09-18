@@ -32,20 +32,20 @@ namespace sle
 
 	#define DECLARE_INVOKE_METHOD(ARG_NUMBER) \
 		template <DECLARE_TYPENAME##ARG_NUMBER> \
-		luarets& invoke(DECLARE_ARG##ARG_NUMBER) \
+		_luarets& invoke(DECLARE_ARG##ARG_NUMBER) \
 		{ \
 			_Push(); \
 			PUSH_VALUE##ARG_NUMBER \
 			return _Call(ARG_NUMBER, 1); \
 		} \
 		template <DECLARE_TYPENAME##ARG_NUMBER> \
-		luarets& operator()(DECLARE_ARG##ARG_NUMBER) \
+		_luarets& operator()(DECLARE_ARG##ARG_NUMBER) \
 		{ \
 			_Push(); \
 			PUSH_VALUE##ARG_NUMBER \
 			return _Call(ARG_NUMBER, 1); \
 		}
-	class luarets;
+	class _luarets;
 	//////////////////////////////////////////////////////////////////////////
 	class EXPORT_CLASS luafunc : public luaelement
 	{
@@ -56,12 +56,12 @@ namespace sle
 		virtual ~luafunc(void);
 	public:
 		//没有参数的函数调用
-		luarets& invoke()
+		_luarets& invoke()
 		{
 			_Push();
 			return _Call(0, 1);
 		}
-		luarets& operator()()
+		_luarets& operator()()
 		{
 			return invoke();
 		}
@@ -73,8 +73,8 @@ namespace sle
 	protected:
 		virtual void _CopyObject(const luafunc &rhl);
 		//调用函数，并处理错误
-		virtual luarets& _Call(int nargs, int nresults);
+		virtual _luarets& _Call(int nargs, int nresults);
 	protected:
-		luarets *m_lpLuarets;
+		_luarets *m_lpLuarets;
 	};
 }

@@ -5,14 +5,14 @@
 #include "_LuaValueHolder.h"
 #include "lua.hpp"
 using namespace sle;
-luarets::luarets(luaenvironment *lpLuaEvrnt) :
+_luarets::_luarets(luaenvironment *lpLuaEvrnt) :
 	m_lpLuaEvrnt(NULL),
 	m_lparyLuaValueHolder(NULL)
 {
 	m_lpLuaEvrnt = lpLuaEvrnt;
 }
 
-luarets::~luarets(void)
+_luarets::~_luarets(void)
 {
 	if (m_lparyLuaValueHolder)
 	{
@@ -25,7 +25,7 @@ luarets::~luarets(void)
 	}
 }
 
-void luarets::_Init()
+void _luarets::_Init()
 {
 	m_lparyLuaValueHolder = new _LuaValueHolder*[MAX_RETURN_COUNT];
 	for (int i = 0; i < MAX_RETURN_COUNT; ++i)
@@ -34,7 +34,7 @@ void luarets::_Init()
 	}
 }
 
-void luarets::refresh()
+void _luarets::refresh()
 {
 	if (!m_lparyLuaValueHolder)
 		_Init();
@@ -49,37 +49,37 @@ void luarets::refresh()
 	}
 }
 
-_LuaValueHolder& luarets::operator[](int _idx)
+_LuaValueHolder& _luarets::operator[](int _idx)
 {
 	_LuaValueHolder &holder = 	*(m_lparyLuaValueHolder[_idx - 1]);
 	return holder;
 }
 
-luarets::operator int()
+_luarets::operator int()
 {
 	_LuaValueHolder &holder = 	*(m_lparyLuaValueHolder[0]);
 	return holder;
 }
 
-luarets::operator double()
+_luarets::operator double()
 {
 	_LuaValueHolder &holder = 	*(m_lparyLuaValueHolder[0]);
 	return holder;
 }
 
-luarets::operator bool()
+_luarets::operator bool()
 {
 	_LuaValueHolder &holder = 	*(m_lparyLuaValueHolder[0]);
 	return holder;
 }
 
-luarets::operator const char*()
+_luarets::operator const char*()
 {
 	_LuaValueHolder &holder = 	*(m_lparyLuaValueHolder[0]);
 	return holder;
 }
 
-luarets::operator luatable()
+_luarets::operator luatable()
 {
 	_LuaValueHolder &holder = 	*(m_lparyLuaValueHolder[0]);
 	return holder;

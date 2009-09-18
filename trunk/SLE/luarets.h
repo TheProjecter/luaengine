@@ -15,15 +15,15 @@ namespace sle
 	class _LuaValueHolder;
 	class luaenvironment;
 	class luatable;
-	class EXPORT_CLASS luarets
+	class EXPORT_CLASS _luarets
 	{
 	public:
-		luarets(luaenvironment *lpLuaEvrnt);
-		virtual ~luarets(void);
+		_luarets(luaenvironment *lpLuaEvrnt);
+		virtual ~_luarets(void);
 	private:
-		//一下两个函数不能调用，因为无意义。
-		luarets(const luarets &rhl){}
-		luarets& operator=(const luarets &rhl) {return *this;}
+		//一下两个函数任何情况下都不能调用，因为无意义，所以直接private。
+		_luarets(const _luarets &rhl){}
+		_luarets& operator=(const _luarets &rhl) {return *this;}
 
 	public:
 		virtual void refresh();
@@ -41,4 +41,5 @@ namespace sle
 		_LuaValueHolder **m_lparyLuaValueHolder;
 		luaenvironment *m_lpLuaEvrnt;
 	};
+	typedef _luarets& luarets;
 }
