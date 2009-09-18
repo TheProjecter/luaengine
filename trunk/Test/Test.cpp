@@ -213,11 +213,14 @@ void test()
 		n = e.gettop();
 		ASSERT(n == 0);
 	}
-	cout << "Succeed!";
-	system("pause");
+	//cout << "Succeed!";
+	//system("pause");
 }
 int _tmain(int argc, _TCHAR* argv[])
 {
-	test();
+	for (int i = 0; i < 1000; ++i)
+	{
+		test();
+	}
 	return 0;
 }

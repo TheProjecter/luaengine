@@ -194,10 +194,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\_TempTableManager.cpp"
-				>
-			</File>
-			<File
 				RelativePath=".\luaelement.cpp"
 				>
 			</File>
@@ -261,10 +257,6 @@
 			</File>
 			<File
 				RelativePath=".\_LuaValueHolder.h"
-				>
-			</File>
-			<File
-				RelativePath=".\_TempTableManager.h"
 				>
 			</File>
 			<File
