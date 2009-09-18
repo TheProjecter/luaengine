@@ -21,6 +21,7 @@ namespace sle
 	//线程安全
 	class EXPORT_CLASS luaenvironment
 	{
+		friend luaelement;
 	public:
 		luaenvironment(void);
 		virtual ~luaenvironment(void);
@@ -37,8 +38,12 @@ namespace sle
 		virtual luavar variable(const char *szName);
 		virtual luatable newtable(const char *szName);
 		virtual luatable newtable();
+		virtual int gettop();
 		virtual int __IncTabRef(const char *szName);
 		virtual int __DecTabRef(const char *szName);
+
+		virtual void _SetGlobal(const char *lpszName);
+		virtual void _SetTable(int _idx);
 
 	protected:
 		int m_nErrCode;

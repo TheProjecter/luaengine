@@ -10,7 +10,7 @@
 #include "StdAfx.h"
 #include "luavar.h"
 #include "_LuaValueHolder.h"
-
+#include "lua.hpp"
 using namespace sle;
 
 luavar::luavar(luaenvironment *lpLuaEvrnt, const char *szName) :
