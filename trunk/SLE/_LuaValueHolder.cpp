@@ -33,7 +33,6 @@ _LuaValueHolder::_LuaValueHolder(const _LuaValueHolder &rhl)
 
 _LuaValueHolder& _LuaValueHolder::operator=(const _LuaValueHolder &rhl)
 {
-	clearvalue();
 	_CopyObject(rhl);
 	return *this;
 }
@@ -41,7 +40,9 @@ _LuaValueHolder& _LuaValueHolder::operator=(const _LuaValueHolder &rhl)
 void _LuaValueHolder::_CopyObject(const _LuaValueHolder &rhl)
 {
 	m_lpLuaEvrnt = rhl.m_lpLuaEvrnt;
-	m_bTemp = m_bTemp;
+	//这里不能复制m_bTemp，如果复制了，目标对象析构时，临时table就会delete
+	//temp对象只有当创建者析构时，才能删除
+	//m_bTemp = m_bTemp;
 	setvalue(rhl.m_nType, rhl.m_lpBuffer, rhl.m_nSize);
 }
 
@@ -122,6 +123,8 @@ void _LuaValueHolder::setvalue(int nStackDeep)
 	case LUA_TBOOLEAN:
 		setvalue(nType, sp.get_raw(nStackDeep), sp.get_rawsize(nStackDeep));
 		break;
+	case LUA_TNIL:
+		setvalue(nType, (void*)NULL, 0);
 	};
 }
 

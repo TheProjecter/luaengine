@@ -2,6 +2,7 @@
 //
 
 #include "stdafx.h"
+#include <iostream>
 #include "sle.h"
 #include "lua.hpp"
 #include <string>
@@ -37,9 +38,9 @@ bool test1(luaenvironment &e)
 	double c = 0;
 	string s;
 	luafunc test1 = e.func("test1");
+	c = test1(a, b);
 	luafunc test2 = e.func("test2");
 	luafunc test_retnil = e.func("test_retnil");
-	c = test1(a, b);
 	RETURN_ON_FAIL(c == 32.5);
 	s = test2("a", "b");
 	RETURN_ON_FAIL(s == "ab");
@@ -182,18 +183,25 @@ bool test8(luaenvironment &e)
 	RETURN_ON_FAIL(tb1.nil());
 	return true;
 }
-//test invalid values
-bool test9(luaenvironment &e)
-{/*
-	luafunc f = e.func("asdfdfdf");
-	f();
-	f = e.func("tbT1.dfdfda");
-	f();*/
 
+//test return multiple values
+bool test9(luaenvironment &e)
+{
+	int n;
+	luafunc f = e.func("test_rettable");
+	luarets &rets = f();
+	luatable tab = rets[1];
+	n = tab[1];
+	RETURN_ON_FAIL(n == 1);
+	n = rets[3];
+	RETURN_ON_FAIL(n == 10);
+	string s = rets[4];
+	RETURN_ON_FAIL(s == "hehe");
 	return true;
 }
+
 bool (*testfunc[])(luaenvironment&) = {test0, test1, test2, test3, test4, test5, test6, test7, test8, test9};
-int _tmain(int argc, _TCHAR* argv[])
+void test()
 {
 	luaenvironment e;
 	int n;
@@ -202,10 +210,14 @@ int _tmain(int argc, _TCHAR* argv[])
 	for (int i = 0; i <10; i++)
 	{
 		ASSERT(testfunc[i](e));
-		n = lua_gettop(e.luastate());
+		n = e.gettop();
 		ASSERT(n == 0);
 	}
-	
-
+	cout << "Succeed!";
+	system("pause");
+}
+int _tmain(int argc, _TCHAR* argv[])
+{
+	test();
 	return 0;
 }

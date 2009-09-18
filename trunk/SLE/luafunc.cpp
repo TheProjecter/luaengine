@@ -13,7 +13,7 @@
 #include "_LuaStackPrase.h"
 #include "_LuaValueHolder.h"
 #include <string>
-
+#include "luarets.h"
 #include "luafunc.h"
 #include "string.h"
 #include <vector>
@@ -21,17 +21,36 @@ using namespace std;
 using namespace sle;
 
 luafunc::luafunc(luaenvironment *lpluaevt, const char *szName) :
-	luaelement(lpluaevt, szName)
+	luaelement(lpluaevt, szName),
+	m_lpLuarets(NULL)
 {
-
+	m_lpLuarets = new luarets(lpluaevt);
+}
+luafunc::luafunc(const luafunc &rhl) :
+	luaelement(rhl),
+	m_lpLuarets(NULL)
+{
+	_CopyObject(rhl);
+}
+luafunc& luafunc::operator=(const luafunc &rhl)
+{
+	_CopyObject(rhl);
+	return *this;
+}
+void luafunc::_CopyObject(const luafunc &rhl)
+{
+	DELETE_POINTER(m_lpLuarets);
+	m_lpLuarets = new luarets(rhl.m_lpLuaEvrnt);
+	luaelement::_CopyObject(rhl);
 }
 luafunc::~luafunc(void)
 {
+	DELETE_POINTER(m_lpLuarets);
 }
-_LuaValueHolder& luafunc::_Call(int nargs, int nresults)
+luarets& luafunc::_Call(int nargs, int nresults)
 {
 	clearerr();
-	m_nErrCode = lua_pcall(m_lpLuaEvrnt->luastate(), nargs, nresults, 0);
+	m_nErrCode = lua_pcall(m_lpLuaEvrnt->luastate(), nargs, MAX_RETURN_COUNT, 0);
 	if (m_nErrCode)
 	{
 		m_szErrDesp = lua_tostring(m_lpLuaEvrnt->luastate(), -1);
@@ -41,9 +60,12 @@ _LuaValueHolder& luafunc::_Call(int nargs, int nresults)
 	else
 	{
 		//m_lpValueHolder->setvalue(m_lpStackPrase->get_type(-1), m_lpStackPrase->get_raw(-1), m_lpStackPrase->get_rawsize(-1));
-		m_lpValueHolder->setvalue(-1);
+		//m_lpValueHolder->setvalue(-1);
+		m_lpLuarets->refresh();
 	}
-	_Pop();
-	return *m_lpValueHolder;
+	//之前_Push了函数地址，这里本应该掉_Pop，但是函数返回值已经在m_lpLuarets->refresh()中处理了，所以不用pop，直接设置0
+	m_nPushCount = 0;
+	//_Pop();
+	return *m_lpLuarets;
 }
 
