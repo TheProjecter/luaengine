@@ -9,10 +9,14 @@
 
 #include "StdAfx.h"
 #include "_LuaValueHolder.h"
+#include "_LuaStackPrase.h"
+#include "luaenvironment.h"
 #include "lua.hpp"
+#include "luatable.h"
+#include "string.h"
 using namespace sle;
-_LuaValueHolder::_LuaValueHolder(void) :
-	m_nType(LUA_TNONE), m_lpBuffer(NULL), m_nSize(0)
+_LuaValueHolder::_LuaValueHolder(luaenvironment *lpLuaEvrnt) :
+	m_nType(LUA_TNONE), m_lpBuffer(NULL), m_nSize(0), m_lpLuaEvrnt(lpLuaEvrnt), m_bTemp(false)
 {
 }
 
@@ -20,6 +24,7 @@ _LuaValueHolder::~_LuaValueHolder(void)
 {
 	clearvalue();
 }
+
 _LuaValueHolder::_LuaValueHolder(const _LuaValueHolder &rhl)
 	: m_nType(LUA_TNONE), m_lpBuffer(NULL), m_nSize(0)
 {
@@ -35,11 +40,19 @@ _LuaValueHolder& _LuaValueHolder::operator=(const _LuaValueHolder &rhl)
 
 void _LuaValueHolder::_CopyObject(const _LuaValueHolder &rhl)
 {
+	m_lpLuaEvrnt = rhl.m_lpLuaEvrnt;
+	m_bTemp = m_bTemp;
 	setvalue(rhl.m_nType, rhl.m_lpBuffer, rhl.m_nSize);
 }
 
 void _LuaValueHolder::clearvalue()
 {
+	if (m_nType == LUA_TTABLE && m_bTemp)
+	{
+		luatable table(m_lpLuaEvrnt, (const char*)m_lpBuffer);
+		table.setnil();
+	}
+	m_bTemp = false;
 	m_nType = LUA_TNONE;
 	DELETE_POINTER(m_lpBuffer);
 	m_nSize = 0;
@@ -79,4 +92,47 @@ _LuaValueHolder::operator const char*()
 	if (m_nType != LUA_TSTRING)
 		ASSERT(false);
 	return (const char*)m_lpBuffer;
+}
+
+_LuaValueHolder::operator luatable()
+{
+	if (m_nType == LUA_TNONE)
+		ASSERT(false);
+	if (m_nType != LUA_TTABLE)
+		ASSERT(false);
+	luatable table(m_lpLuaEvrnt, (const char*)m_lpBuffer);
+	return table;
+}
+
+void _LuaValueHolder::setvalue(int nStackDeep)
+{
+	_LuaStackPrase sp(m_lpLuaEvrnt);
+	int nType = sp.get_type(nStackDeep);
+	switch(nType)
+	{
+	case LUA_TTABLE:
+		_SetTable(nStackDeep);
+		break;
+	case LUA_TNUMBER:
+		setvalue(nType, sp.get_raw(nStackDeep), sp.get_rawsize(nStackDeep));
+		break;
+	case LUA_TSTRING:
+		setvalue(nType, sp.get_raw(nStackDeep), sp.get_rawsize(nStackDeep));
+		break;
+	case LUA_TBOOLEAN:
+		setvalue(nType, sp.get_raw(nStackDeep), sp.get_rawsize(nStackDeep));
+		break;
+	};
+}
+
+bool _LuaValueHolder::_SetTable(int nDeep)
+{
+	RETURN_ON_FAIL(nDeep == -1);
+	char szName[255] = {0};
+	_GenerateTempName(szName, 255);
+	lua_setglobal(m_lpLuaEvrnt->luastate(), szName);
+	lua_getglobal(m_lpLuaEvrnt->luastate(), szName);
+	setvalue(LUA_TTABLE, (char*)szName, strlen(szName) + 1);
+	m_bTemp = true;
+	return true;
 }

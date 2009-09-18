@@ -9,8 +9,10 @@
 
 #include "stdafx.h"
 #include "malloc.h"
+#include "stdlib.h"
 // TODO: reference any additional headers you need in STDAFX.H
 // and not in this file
+unsigned int s_nTempTableId = 0;
 void* _copypointer(const void *lpsrc, size_t nsize)
 {
 	CHECK_POINTER(lpsrc);
@@ -18,4 +20,8 @@ void* _copypointer(const void *lpsrc, size_t nsize)
 	lpdest = new char[nsize];
 	memcpy(lpdest, lpsrc, nsize);
 	return lpdest;
+}
+void _GenerateTempName(char * lpBuf, int nSize)
+{
+	sprintf_s(lpBuf, nSize, "sletemptb%d%d", rand()*10000, s_nTempTableId++);
 }

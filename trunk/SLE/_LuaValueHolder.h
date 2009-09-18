@@ -10,10 +10,12 @@
 #pragma once
 namespace sle
 {
+	class luaenvironment;
+	class luatable;
 	class _LuaValueHolder
 	{
 	public:
-		_LuaValueHolder(void);
+		_LuaValueHolder(luaenvironment *lpLuaEvrnt);
 		_LuaValueHolder(const _LuaValueHolder &rhl);
 		virtual ~_LuaValueHolder(void);
 		virtual _LuaValueHolder& operator=(const _LuaValueHolder &rhl);
@@ -27,20 +29,29 @@ namespace sle
 		template <typename T>
 		void setvalue(int nType, T** _lplpv, size_t nsize);
 
+		void setvalue(int nStackDeep);
+
 		virtual void clearvalue();
+
 	public: //一组强制类型转换函数
 		virtual operator int();
 		virtual operator double();
 		virtual operator bool();
 		virtual operator const char*();
+		virtual operator luatable();
 
 	protected:
 		virtual void _CopyObject(const _LuaValueHolder &rhl);
+		//把栈顶的table赋予临时名，保存下来
+		bool _SetTable(int nDeep);
 
 	protected:
 		int m_nType;
 		size_t m_nSize;
 		void *m_lpBuffer;
+		//指示当前值（比如table）是否是临时创建的，如果是，析构的时候就要删除
+		bool m_bTemp;
+		luaenvironment *m_lpLuaEvrnt;
 	};
 
 	template <typename T>

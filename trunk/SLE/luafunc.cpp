@@ -40,7 +40,8 @@ _LuaValueHolder& luafunc::_Call(int nargs, int nresults)
 	}
 	else
 	{
-		m_lpValueHolder->setvalue(m_lpStackPrase->get_type(-1), m_lpStackPrase->get_raw(-1), m_lpStackPrase->get_rawsize(-1));
+		//m_lpValueHolder->setvalue(m_lpStackPrase->get_type(-1), m_lpStackPrase->get_raw(-1), m_lpStackPrase->get_rawsize(-1));
+		m_lpValueHolder->setvalue(-1);
 	}
 	_Pop();
 	return *m_lpValueHolder;

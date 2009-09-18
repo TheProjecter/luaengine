@@ -17,6 +17,7 @@ namespace sle
 	class luatable;
 	class luavar;
 	class luaelement;
+	class _TempTableManager;
 	//线程安全
 	class EXPORT_CLASS luaenvironment
 	{
@@ -36,12 +37,13 @@ namespace sle
 		virtual luavar variable(const char *szName);
 		virtual luatable newtable(const char *szName);
 		virtual luatable newtable();
-	protected:
-		virtual void _GenerateTempName(char * lpBuf, int nSize);
+		virtual int __IncTabRef(const char *szName);
+		virtual int __DecTabRef(const char *szName);
+
 	protected:
 		int m_nErrCode;
 		const char *m_nErrDesp;
 		lua_State *m_lpLuaState;
-		static int s_nTempTableId;
+		_TempTableManager *m_lpTempTableManager;
 	};
 }

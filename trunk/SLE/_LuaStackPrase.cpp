@@ -70,6 +70,9 @@ size_t _LuaStackPrase::get_rawsize(int _idx)
 	case LUA_TNUMBER:
 		nSize = sizeof(LUA_NUMBER);
 		break;
+	case LUA_TBOOLEAN:
+		nSize = sizeof(LUA_NUMBER);
+		break;
 	case LUA_TSTRING:
 		nSize = lua_strlen(m_lpLuaEvrnt->luastate(), _idx) + 1;
 		break;
