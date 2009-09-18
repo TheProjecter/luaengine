@@ -40,6 +40,7 @@ luafunc& luafunc::operator=(const luafunc &rhl)
 void luafunc::_CopyObject(const luafunc &rhl)
 {
 	DELETE_POINTER(m_lpLuarets);
+	//m_lpLuarets不需要复制，因为每次CallLua后，m_lpLuarets都会刷新
 	m_lpLuarets = new luarets(rhl.m_lpLuaEvrnt);
 	luaelement::_CopyObject(rhl);
 }

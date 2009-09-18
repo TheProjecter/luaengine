@@ -20,14 +20,10 @@ namespace sle
 	public:
 		luarets(luaenvironment *lpLuaEvrnt);
 		virtual ~luarets(void);
-		luarets(const luarets &rhl)
-		{
-
-		}
-		luarets& operator=(const luarets &rhl)
-		{
-			return *this;
-		}
+	private:
+		//一下两个函数不能调用，因为无意义。
+		luarets(const luarets &rhl){}
+		luarets& operator=(const luarets &rhl) {return *this;}
 
 	public:
 		virtual void refresh();
