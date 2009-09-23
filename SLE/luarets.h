@@ -12,7 +12,7 @@
 
 namespace sle
 {
-	#define ST(i) arg##i = m_lpLuaMultiValueHolder->operator[](i);
+	#define ST(i) arg##i = m_lpLuaMultiValueHolder->operator[](i - 1);
 	#define ST1 ST(1)
 	#define ST2 ST1 ST(2)
 	#define ST3 ST2 ST(3)

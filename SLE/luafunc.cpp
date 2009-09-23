@@ -47,7 +47,7 @@ luafunc::~luafunc(void)
 _LuaMultiValueHolder& luafunc::_Call(int nargs, int nresults)
 {
 	clearerr();
-	m_nErrCode = lua_pcall(m_lpLuaEvrnt->luastate(), nargs, MAX_RETURN_COUNT, 0);
+	m_nErrCode = lua_pcall(m_lpLuaEvrnt->luastate(), nargs, m_nRetCount, 0);
 	if (m_nErrCode)
 	{
 		m_szErrDesp = lua_tostring(m_lpLuaEvrnt->luastate(), -1);
@@ -55,7 +55,7 @@ _LuaMultiValueHolder& luafunc::_Call(int nargs, int nresults)
 	}
 	else
 	{
-		m_lpLuaMultiValueHolder->_Refresh(10);
+		m_lpLuaMultiValueHolder->_Refresh(m_nRetCount);
 	}
 	//之前_Push了函数地址，这里本应该_Pop，但是函数返回值已经在m_lpLuarets->refresh()中处理了，所以不用pop，直接设置0
 	//_Pop();

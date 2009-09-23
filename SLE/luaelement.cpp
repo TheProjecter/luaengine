@@ -52,20 +52,21 @@ bool luaelement::operator==(const luaelement &rhl) const
 }
 void luaelement::_CopyObject(const luaelement& rhl)
 {
-	DELETE_POINTER(m_lpStackPrase);
+	//DELETE_POINTER(m_lpStackPrase);
 	DELETE_POINTER(m_lpValueHolder);
 	m_lpLuaEvrnt = rhl.m_lpLuaEvrnt;
 	m_nErrCode = rhl.m_nErrCode;
 	m_szErrDesp = rhl.m_szErrDesp;
 	m_szName = rhl.m_szName;
 	m_nPushCount = rhl.m_nPushCount;
-	m_lpStackPrase = new _LuaStackPrase(*rhl.m_lpStackPrase);
+	//m_lpStackPrase = new _LuaStackPrase(*rhl.m_lpStackPrase);
+	m_lpStackPrase = rhl.m_lpLuaEvrnt->m_lpStackPrase;
 	m_lpValueHolder = new _LuaValueHolder(*rhl.m_lpValueHolder);
 }
 
 luaelement::~luaelement(void)
 {
-	DELETE_POINTER(m_lpStackPrase);
+	//DELETE_POINTER(m_lpStackPrase);
 	DELETE_POINTER(m_lpValueHolder);
 	m_lpLuaEvrnt = NULL;
 	m_nPushCount = 0;
