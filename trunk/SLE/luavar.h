@@ -25,7 +25,6 @@ namespace sle
 		template <typename T>
 		luavar& operator=(T _v);
 
-		//virtual void setnil();
 	public:
 		virtual operator int();
 		virtual operator double();

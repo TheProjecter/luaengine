@@ -22,6 +22,8 @@ namespace sle
 	class EXPORT_CLASS luaenvironment
 	{
 		friend luaelement;
+		friend luatable;
+		friend luavar;
 	public:
 		luaenvironment(void);
 		virtual bool operator==(const luaenvironment &rhl) const;
@@ -43,7 +45,7 @@ namespace sle
 		virtual luatable newtable(const char *szName);
 		virtual luatable newtable();
 		virtual int gettop() const;
-	
+	protected:
 		virtual void _SetGlobal(const char *lpszName) const;
 		virtual void _SetTable(int _idx) const;
 
