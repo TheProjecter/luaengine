@@ -1,7 +1,7 @@
 /*******************************************************************************
-* 版权所有(C) 本软件遵循GPL协议。
+* File Header
 * Filename		：LuaValueHolder.cpp
-* Author			：ZhaoYu(icyplayer@126.com) <http://www.zhaoyu.me/>
+* Author			：ZhaoYu
 * Create Time	：2009年08月17日
 * GUID				：FD175154-7265-43CB-A2E4-F7739CBCD8B0
 * Comments	：
@@ -58,7 +58,10 @@ void _LuaValueHolder::clearvalue()
 	DELETE_POINTER(m_lpBuffer);
 	m_nSize = 0;
 }
-
+int _LuaValueHolder::type()
+{
+	return m_nType;
+}
 _LuaValueHolder::operator int()
 {
 	if (m_nType == LUA_TNONE)

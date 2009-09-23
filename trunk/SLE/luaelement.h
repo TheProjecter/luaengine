@@ -1,7 +1,7 @@
 /*******************************************************************************
-* 版权所有(C) 本软件遵循GPL协议。
+* File Header
 * Filename		：luaelement.h
-* Author			：ZhaoYu(icyplayer@126.com) <http://www.zhaoyu.me/>
+* Author			：ZhaoYu
 * Create Time	：2009年08月20日
 * GUID				：3194A591-A506-4C08-AF6D-51D1AA388F2B
 * Comments	：
@@ -20,6 +20,7 @@ namespace sle
 		//因为LuaStackPrase要使一个luaelement进栈，就必须调用PushMethod方法
 		friend _LuaStackPrase;
 	public:
+		luaelement();
 		luaelement(luaenvironment *lpLuaEvrnt, const char *szName);
 		luaelement(const luaelement& rhl);
 		virtual luaelement& operator=(const luaelement &rhl);

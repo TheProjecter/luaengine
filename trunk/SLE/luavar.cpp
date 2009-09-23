@@ -1,7 +1,7 @@
 /*******************************************************************************
-* 版权所有(C) 本软件遵循GPL协议。
+* File Header
 * Filename		：luavar.cpp
-* Author			：ZhaoYu(icyplayer@126.com) <http://www.zhaoyu.me/>
+* Author			：ZhaoYu
 * Create Time	：2009年08月20日
 * GUID				：B2ABD955-30D0-4B7F-A072-A36FD51303FC
 * Comments	：
@@ -13,6 +13,9 @@
 #include "lua.hpp"
 using namespace sle;
 
+luavar::luavar()
+{
+}
 luavar::luavar(luaenvironment *lpLuaEvrnt, const char *szName) :
 	luaelement(lpLuaEvrnt, szName)
 {

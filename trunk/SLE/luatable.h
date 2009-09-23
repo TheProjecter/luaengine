@@ -1,7 +1,7 @@
 /*******************************************************************************
-* 版权所有(C) 本软件遵循GPL协议。
+* File Header
 * Filename		：luatable.h
-* Author			：ZhaoYu(icyplayer@126.com) <http://www.zhaoyu.me/>
+* Author			：ZhaoYu
 * Create Time	：2009年08月17日
 * GUID				：64C29307-C658-4590-BF06-5672D7F4CBA1
 * Comments	：
@@ -17,6 +17,7 @@ namespace sle
 	class EXPORT_CLASS luatable : public luaelement
 	{
 	public:
+		luatable();
 		luatable(luaenvironment *lpLuaEvrnt, const char *szName);
 		virtual ~luatable(void);
 	public:
