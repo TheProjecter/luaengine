@@ -45,6 +45,7 @@ namespace sle
 		virtual luatable newtable(const char *szName);
 		virtual luatable newtable();
 		virtual int gettop() const;
+		DECLARE_PROPERTY_GET(_LuaStackPrase*, m_lpStackPrase, _GetStackPrase);
 	protected:
 		virtual void _SetGlobal(const char *lpszName) const;
 		virtual void _SetTable(int _idx) const;

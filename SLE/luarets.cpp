@@ -5,16 +5,14 @@
 #include "_LuaMultiValueHolder.h"
 #include "_LuaValueHolder.h"
 using namespace sle;
-luarets::luarets(const _LuaMultiValueHolder &values) :
-	m_nTargetCount(0),
-	m_lparrySaveTarget(NULL)
+luarets::luarets(const _LuaMultiValueHolder &values)
 {
 	m_lpLuaMultiValueHolder = (_LuaMultiValueHolder*)(&values);
 }
 
 luarets::~luarets(void)
 {
-	DELETE_ARRAY(m_lparrySaveTarget);
+	//DELETE_ARRAY(m_lparrySaveTarget);
 }
 
 

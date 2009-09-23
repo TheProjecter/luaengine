@@ -110,7 +110,7 @@ _LuaValueHolder::operator luatable()
 
 void _LuaValueHolder::setvalue(int nStackDeep)
 {
-	_LuaStackPrase sp(m_lpLuaEvrnt);
+	_LuaStackPrase &sp = *(m_lpLuaEvrnt->_GetStackPrase());
 	int nType = sp.get_type(nStackDeep);
 	switch(nType)
 	{

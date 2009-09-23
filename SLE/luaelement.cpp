@@ -33,7 +33,7 @@ luaelement::luaelement(luaenvironment *lpLuaEvrnt, const char *szName) :
 {
 	m_lpLuaEvrnt = lpLuaEvrnt;
 	m_szName = szName;
-	m_lpStackPrase = new _LuaStackPrase(lpLuaEvrnt);
+	m_lpStackPrase = lpLuaEvrnt->_GetStackPrase(); //new _LuaStackPrase(lpLuaEvrnt);
 	m_lpValueHolder = new _LuaValueHolder(lpLuaEvrnt);
 }
 luaelement::luaelement(const luaelement& rhl) :
