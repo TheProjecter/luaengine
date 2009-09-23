@@ -35,7 +35,7 @@ namespace sle
 		//检查当前域名是否合法，如果能正常push说明域名是合法的
 		virtual bool verify();
 		virtual const char *name();
-		//reset this value to nil
+		//reset this domain to nil
 		virtual void setnil();
 	protected:
 		virtual void _CopyObject(const luaelement& rhl);
