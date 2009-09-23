@@ -53,6 +53,7 @@ namespace sle
 		{
 			return invoke();
 		}
+		DECLARE_PROPERTY(int, m_nRetCount, set_retnums, get_retnums);
 		DECLARE_INVOKE_METHOD(1)
 		DECLARE_INVOKE_METHOD(2)
 		DECLARE_INVOKE_METHOD(3)

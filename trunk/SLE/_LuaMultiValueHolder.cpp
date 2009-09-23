@@ -15,7 +15,7 @@ _LuaMultiValueHolder::~_LuaMultiValueHolder(void)
 {
 	if (m_lparyLuaValueHolder)
 	{
-		for (int i = 0; i < MAX_RETURN_COUNT; ++i)
+		for (int i = 0; i < m_nCount; ++i)
 		{
 			DELETE_POINTER(m_lparyLuaValueHolder[i]);
 		}
@@ -49,7 +49,7 @@ void _LuaMultiValueHolder::_Refresh(int nCount)
 _LuaValueHolder& _LuaMultiValueHolder::operator[](int _idx)
 {
 	ASSERT(_idx <= m_nCount);
-	_LuaValueHolder &holder = 	*(m_lparyLuaValueHolder[_idx - 1]);
+	_LuaValueHolder &holder = 	*(m_lparyLuaValueHolder[_idx]);
 	return holder;
 }
 

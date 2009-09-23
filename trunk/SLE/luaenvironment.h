@@ -17,7 +17,7 @@ namespace sle
 	class luatable;
 	class luavar;
 	class luaelement;
-	class _TempTableManager;
+	class _LuaStackPrase;
 	//线程安全
 	class EXPORT_CLASS luaenvironment
 	{
@@ -37,15 +37,13 @@ namespace sle
 		//每当出错，都会回调到这里
 		virtual void error(int nCode, const char* szDesp);
 		virtual luaelement element(const char *szName);
-		virtual luafunc func(const char *szName);
+		virtual luafunc func(const char *szName, int nReturns = 1);
 		virtual luatable table(const char *szName);
 		virtual luavar variable(const char *szName);
 		virtual luatable newtable(const char *szName);
 		virtual luatable newtable();
 		virtual int gettop() const;
-		//virtual int __IncTabRef(const char *szName);
-		//virtual int __DecTabRef(const char *szName);
-
+	
 		virtual void _SetGlobal(const char *lpszName) const;
 		virtual void _SetTable(int _idx) const;
 
@@ -53,6 +51,7 @@ namespace sle
 		int m_nErrCode;
 		const char *m_nErrDesp;
 		lua_State *m_lpLuaState;
-		//_TempTableManager *m_lpTempTableManager;
+		//lua堆栈解析器
+		_LuaStackPrase* m_lpStackPrase;
 	};
 }

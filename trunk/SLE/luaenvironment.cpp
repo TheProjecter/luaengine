@@ -40,6 +40,7 @@ bool luaenvironment::close()
 	{
 		lua_close(m_lpLuaState);
 		m_lpLuaState = NULL;
+		DELETE_POINTER(m_lpStackPrase);
 		return true;
 	}
 	return false;
@@ -51,6 +52,7 @@ bool luaenvironment::init()
 	error = luaopen_base(m_lpLuaState);
 	luaL_openlibs(m_lpLuaState);
 	lua_settop(m_lpLuaState, 0);
+	m_lpStackPrase = new _LuaStackPrase(this);
 	return error == 0;
 }
 bool luaenvironment::dofile(const char *szFilename) const
@@ -65,9 +67,10 @@ lua_State* luaenvironment::luastate() const
 {
 	return m_lpLuaState;
 }
-luafunc luaenvironment::func(const char *szName)
+luafunc luaenvironment::func(const char *szName, int nReturns)
 {
 	luafunc func(this, szName);
+	func.set_retnums(nReturns);
 	int nType = func.type();
 	ASSERT(nType == LUA_TFUNCTION);
 	return func;

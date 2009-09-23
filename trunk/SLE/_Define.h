@@ -9,7 +9,6 @@
 namespace sle
 {
 #define EXPORT_CLASS _declspec(dllexport)
-#define MAX_RETURN_COUNT 10
 
 #define DECLARE_TYPENAME1 typename T1
 #define DECLARE_TYPENAME2 DECLARE_TYPENAME1, typename T2
@@ -28,4 +27,9 @@ namespace sle
 #define DECLARE_ARG3 DECLARE_ARG2, T3 arg3
 #define DECLARE_ARG4 DECLARE_ARG3, T4 arg4
 #define DECLARE_ARG5 DECLARE_ARG4, T5 arg5
+
+#define DECLARE_PROPERTY(_ty, _v, _set, _get) \
+	void _set(_ty _value) { _v = _value; } \
+	_ty _get() { return _v; }
+
 }
