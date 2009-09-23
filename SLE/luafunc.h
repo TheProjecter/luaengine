@@ -35,6 +35,7 @@ namespace sle
 		}
 	class _LuaMultiValueHolder;
 	//////////////////////////////////////////////////////////////////////////
+	//NOT Thread safe, invoke涉及_Push和_Call，要加同步锁
 	class EXPORT_CLASS luafunc : public luaelement
 	{
 	public:

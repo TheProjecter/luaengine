@@ -15,6 +15,7 @@
 
 namespace sle
 {
+	//NOT Thread safe, operator=中_Push和_Pop应该加同步锁
 	class EXPORT_CLASS luavar : public luaelement
 	{
 	public:

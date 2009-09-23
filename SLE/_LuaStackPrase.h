@@ -14,6 +14,7 @@ namespace sle
 {
 	class luaenvironment;
 	class luaelement;
+	//Thread safe
 	class _LuaStackPrase
 	{
 	public:

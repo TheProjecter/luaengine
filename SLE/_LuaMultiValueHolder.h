@@ -4,6 +4,7 @@ namespace sle
 	class luaenvironment;
 	class _LuaValueHolder;
 	class luatable;
+	//NOT Thread safe, _Refresh涉及多次堆栈操作，要加堆栈锁
 	class _LuaMultiValueHolder
 	{
 	public:
