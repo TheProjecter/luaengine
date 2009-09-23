@@ -14,6 +14,7 @@
 #include "luaenvironment.h"
 namespace sle
 {
+	//NOT Thread safe, setvalue中_Push和_Pop应该加同步锁
 	class EXPORT_CLASS luatable : public luaelement
 	{
 	public:

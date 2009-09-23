@@ -60,7 +60,7 @@ void luaelement::_CopyObject(const luaelement& rhl)
 	m_szName = rhl.m_szName;
 	m_nPushCount = rhl.m_nPushCount;
 	//m_lpStackPrase = new _LuaStackPrase(*rhl.m_lpStackPrase);
-	m_lpStackPrase = rhl.m_lpLuaEvrnt->m_lpStackPrase;
+	m_lpStackPrase = rhl.m_lpLuaEvrnt->_GetStackPrase();
 	m_lpValueHolder = new _LuaValueHolder(*rhl.m_lpValueHolder);
 }
 

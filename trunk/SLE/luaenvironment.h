@@ -21,9 +21,6 @@ namespace sle
 	//线程安全
 	class EXPORT_CLASS luaenvironment
 	{
-		friend luaelement;
-		friend luatable;
-		friend luavar;
 	public:
 		luaenvironment(void);
 		virtual bool operator==(const luaenvironment &rhl) const;
@@ -45,10 +42,11 @@ namespace sle
 		virtual luatable newtable(const char *szName);
 		virtual luatable newtable();
 		virtual int gettop() const;
+	public:
 		DECLARE_PROPERTY_GET(_LuaStackPrase*, m_lpStackPrase, _GetStackPrase);
-	protected:
 		virtual void _SetGlobal(const char *lpszName) const;
 		virtual void _SetTable(int _idx) const;
+	protected:
 
 	protected:
 		int m_nErrCode;

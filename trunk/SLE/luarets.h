@@ -27,6 +27,7 @@ namespace sle
 		}
 	class _LuaValueHolder;
 	class _LuaMultiValueHolder;
+	//Thread safe
 	class EXPORT_CLASS luarets
 	{
 	public:
@@ -35,8 +36,9 @@ namespace sle
 		//这个operator=是特殊的，用来处理导出函数返回值
 		void operator=(const _LuaMultiValueHolder &rhl);
 	private:
-		luarets(const luarets &rhl)		{		}
-		void operator=(const luarets &rhl) {};
+		//以下两个函数不能调用，因为无意义，防止误调用，直接private
+		luarets(const luarets &rhl) {}
+		void operator=(const luarets &rhl) {}
 
 	public:
 		virtual _LuaValueHolder& operator[](int _idx);
@@ -47,14 +49,6 @@ namespace sle
 		DECLARE_GET_METHOD(5);
 
 	protected:
-		virtual void _Get(int nCount, ...);
-		virtual void _Hold(int nCount, ...);
-
-	protected:
-		//一组地址，指示返回值导出到哪里
-		//void **m_lparrySaveTarget;
-		//保存返回值地址的个数
-		//int m_nTargetCount;
 		_LuaMultiValueHolder *m_lpLuaMultiValueHolder;
 	};
 }

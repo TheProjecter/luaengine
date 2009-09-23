@@ -15,6 +15,7 @@ namespace sle
 	class luaenvironment;
 	class _LuaStackPrase;
 	class _LuaValueHolder;
+	//NOT Thread safe, _PUSH涉及多次堆栈操作，要加堆栈锁
 	class EXPORT_CLASS luaelement
 	{
 		//因为LuaStackPrase要使一个luaelement进栈，就必须调用PushMethod方法

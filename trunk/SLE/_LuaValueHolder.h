@@ -12,6 +12,7 @@ namespace sle
 {
 	class luaenvironment;
 	class luatable;
+	//Thread safe
 	class _LuaValueHolder
 	{
 	public:
