@@ -1,7 +1,7 @@
 /*******************************************************************************
-* 版权所有(C) 本软件遵循GPL协议。
+* File Header
 * Filename		：LuaStackPrase.h
-* Author			：ZhaoYu(icyplayer@126.com) <http://www.zhaoyu.me/>
+* Author			：ZhaoYu
 * Create Time	：2009年08月17日
 * GUID				：AF973E30-6A37-4CBD-971E-056EA441AD4E
 * Comments	：

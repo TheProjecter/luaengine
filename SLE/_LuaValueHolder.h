@@ -1,7 +1,7 @@
 /*******************************************************************************
-* 版权所有(C) 本软件遵循GPL协议。
+* File Header
 * Filename		：LuaValueHolder.h
-* Author			：ZhaoYu(icyplayer@126.com) <http://www.zhaoyu.me/>
+* Author			：ZhaoYu
 * Create Time	：2009年08月17日
 * GUID				：FFD574A9-16C5-4E4B-B686-E77985626E0B
 * Comments	：
@@ -32,6 +32,7 @@ namespace sle
 		void setvalue(int nStackDeep);
 
 		virtual void clearvalue();
+		virtual int type();
 
 	public: //一组强制类型转换函数
 		virtual operator int();

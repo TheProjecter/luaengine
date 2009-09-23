@@ -1,7 +1,7 @@
 /*******************************************************************************
-* 版权所有(C) 本软件遵循GPL协议。
+* File Header
 * Filename		：stdafx.h
-* Author			：ZhaoYu(icyplayer@126.com) <http://www.zhaoyu.me/>
+* Author			：ZhaoYu
 * Create Time	：2009年08月17日
 * GUID				：BFD48181-BCE4-4679-AB7A-28CFD7F2C7F2
 * Comments	：
@@ -26,6 +26,7 @@
 #define CHECK_POINTER(p)	if (!p) ASSERT(false);
 
 #define DELETE_POINTER(p) { if (p) delete p; p = NULL; }
+#define DELETE_ARRAY(p) { if (p) delete[] p; p = NULL; }
 
 #define RETURN_ON_FAIL(condiction) { if (!(condiction)) { ASSERT(false); return false; } }
 

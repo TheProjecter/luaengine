@@ -1,7 +1,7 @@
 /*******************************************************************************
-* 版权所有(C) 本软件遵循GPL协议。
+* File Header
 * Filename		：luavar.h
-* Author			：ZhaoYu(icyplayer@126.com) <http://www.zhaoyu.me/>
+* Author			：ZhaoYu
 * Create Time	：2009年08月20日
 * GUID				：631CCA32-B851-4ED0-A02D-416BB02DA3BC
 * Comments	：
@@ -18,6 +18,7 @@ namespace sle
 	class EXPORT_CLASS luavar : public luaelement
 	{
 	public:
+		luavar();
 		luavar(luaenvironment *lpLuaEvrnt, const char *szName);
 		virtual ~luavar(void);
 	public:

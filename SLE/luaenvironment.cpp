@@ -1,7 +1,7 @@
 /*******************************************************************************
-* 版权所有(C) 本软件遵循GPL协议。
+* File Header
 * Filename		：luaenvironment.cpp
-* Author			：ZhaoYu(icyplayer@126.com) <http://www.zhaoyu.me/>
+* Author			：ZhaoYu
 * Create Time	：2009年08月17日
 * GUID				：BE34DB74-4F6D-419C-B377-961CD4E9B103
 * Comments	：

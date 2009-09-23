@@ -1,7 +1,7 @@
 /*******************************************************************************
-* 版权所有(C) 本软件遵循GPL协议。
+* File Header
 * Filename		：luaelement.cpp
-* Author			：ZhaoYu(icyplayer@126.com) <http://www.zhaoyu.me/>
+* Author			：ZhaoYu
 * Create Time	：2009年08月20日
 * GUID				：0DC2837B-DA31-4CFB-8E42-D425BF022F46
 * Comments	：
@@ -15,12 +15,19 @@
 #include "_LuaValueHolder.h"
 using namespace sle;
 #define CONSTRUCTOR_INIT \
+	m_lpLuaEvrnt(NULL), \
+	m_szName(""), \
 	m_nErrCode(0), \
 	m_szErrDesp(""), \
 	m_lpStackPrase(NULL), \
 	m_lpValueHolder(NULL), \
 	m_nPushCount(0)
 
+luaelement::luaelement() :
+	CONSTRUCTOR_INIT
+{
+
+}
 luaelement::luaelement(luaenvironment *lpLuaEvrnt, const char *szName) :
 	CONSTRUCTOR_INIT
 {
@@ -108,6 +115,7 @@ const char* luaelement::name()
 
 bool luaelement::_Push()
 {
+	CHECK_POINTER(m_lpLuaEvrnt);
 	//push和pop必须成对出现，如果之前有push，则不能再push
 	 RETURN_ON_FAIL(m_nPushCount == 0);
 	//TODO 用strtok线程不安全，有空自己写个实时的split
@@ -143,6 +151,7 @@ bool luaelement::_Push()
 
 bool luaelement::_PushWithoutKey()
 {
+	CHECK_POINTER(m_lpLuaEvrnt);
 	//push和pop必须成对出现，如果之前有push，则不能再push
 	RETURN_ON_FAIL(m_nPushCount == 0);
 	//TODO 用strtok线程不安全，有空自己写个实时的split
@@ -185,6 +194,7 @@ bool luaelement::_PushWithoutKey()
 
 void luaelement::_Pop(int nExtraPop)
 {
+	CHECK_POINTER(m_lpLuaEvrnt);
 	lua_pop(m_lpLuaEvrnt->luastate(), m_nPushCount + nExtraPop);
 	m_nPushCount = 0;
 }

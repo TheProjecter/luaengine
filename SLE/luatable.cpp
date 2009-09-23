@@ -1,7 +1,7 @@
 /*******************************************************************************
-* 版权所有(C) 本软件遵循GPL协议。
+* File Header
 * Filename		：luatable.cpp
-* Author			：ZhaoYu(icyplayer@126.com) <http://www.zhaoyu.me/>
+* Author			：ZhaoYu
 * Create Time	：2009年08月17日
 * GUID				：7AD51E0F-23A2-4D47-A36E-B48F927F5E04
 * Comments	：
@@ -19,6 +19,10 @@
 using namespace sle;
 using namespace std;
 
+luatable::luatable()
+{
+
+}
 luatable::luatable(luaenvironment *lpLuaEvrnt, const char *szName) :
 	luaelement(lpLuaEvrnt, szName)
 {
@@ -51,6 +55,7 @@ _LuaValueHolder& luatable::getvalue(const char *_k)
 }
 luavar luatable::operator[](size_t _idx)
 {
+	CHECK_POINTER(m_lpLuaEvrnt);
 	char szBuf[255];
 	itoa((int)_idx, szBuf, 10);
 	string szName = m_szName;
@@ -61,6 +66,7 @@ luavar luatable::operator[](size_t _idx)
 }
 luavar luatable::operator[](const char* _k)
 {
+	CHECK_POINTER(m_lpLuaEvrnt);
 	string szName = m_szName;
 	szName.append(".");
 	szName.append(_k);

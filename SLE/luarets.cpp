@@ -1,86 +1,58 @@
 #include "StdAfx.h"
 #include "luarets.h"
 #include "luatable.h"
-#include "luaenvironment.h"
-#include "_LuaValueHolder.h"
 #include "lua.hpp"
+#include "_LuaMultiValueHolder.h"
+#include "_LuaValueHolder.h"
 using namespace sle;
-_luarets::_luarets(luaenvironment *lpLuaEvrnt) :
-	m_lpLuaEvrnt(NULL),
-	m_lparyLuaValueHolder(NULL)
+luarets::luarets(const _LuaMultiValueHolder &values) :
+	m_nTargetCount(0),
+	m_lparrySaveTarget(NULL)
 {
-	m_lpLuaEvrnt = lpLuaEvrnt;
+	m_lpLuaMultiValueHolder = (_LuaMultiValueHolder*)(&values);
 }
 
-_luarets::~_luarets(void)
+luarets::~luarets(void)
 {
-	if (m_lparyLuaValueHolder)
+	DELETE_ARRAY(m_lparrySaveTarget);
+}
+
+
+
+void luarets::_Hold(int nCount, ...)
+{/*
+	for (int i = 0; i < nCount; ++i)
 	{
-		for (int i = 0; i < MAX_RETURN_COUNT; ++i)
+		m_lpSaveTarget[i] = &arg##i
+	}
+*/
+}
+
+void luarets::_Get(int nCount, ...)
+{/*#$%#$%
+	va_list ap;
+	va_start ( ap, nCount );
+	for (int i= 0; i< nCount; ++i)
+	{
+		int t = va_arg (ap, int);
+		if ( t > m )
 		{
-			DELETE_POINTER(m_lparyLuaValueHolder[i]);
+			m = t;
 		}
-		delete[] m_lparyLuaValueHolder;
-		m_lparyLuaValueHolder = NULL;
 	}
+	va_end (ap);
+*/
 }
 
-void _luarets::_Init()
+
+void luarets::operator=(const _LuaMultiValueHolder &rhl)
 {
-	m_lparyLuaValueHolder = new _LuaValueHolder*[MAX_RETURN_COUNT];
-	for (int i = 0; i < MAX_RETURN_COUNT; ++i)
-	{
-		m_lparyLuaValueHolder[i] = new _LuaValueHolder(m_lpLuaEvrnt);
-	}
+	m_lpLuaMultiValueHolder = (_LuaMultiValueHolder*)(&rhl);
+	
 }
 
-void _luarets::refresh()
+_LuaValueHolder& luarets::operator[](int _idx)
 {
-	if (!m_lparyLuaValueHolder)
-		_Init();
-	int n = m_lpLuaEvrnt->gettop();
-	for (int i = 0; i < MAX_RETURN_COUNT; ++i)
-	{
-		int _idx =MAX_RETURN_COUNT - i - 1;
-		_LuaValueHolder &holder = 	*(m_lparyLuaValueHolder[_idx]);
-		holder.setvalue(-1);
-		lua_pop(m_lpLuaEvrnt->luastate(), 1);
-		 n = m_lpLuaEvrnt->gettop();
-	}
-}
-
-_LuaValueHolder& _luarets::operator[](int _idx)
-{
-	_LuaValueHolder &holder = 	*(m_lparyLuaValueHolder[_idx - 1]);
-	return holder;
-}
-
-_luarets::operator int()
-{
-	_LuaValueHolder &holder = 	*(m_lparyLuaValueHolder[0]);
-	return holder;
-}
-
-_luarets::operator double()
-{
-	_LuaValueHolder &holder = 	*(m_lparyLuaValueHolder[0]);
-	return holder;
-}
-
-_luarets::operator bool()
-{
-	_LuaValueHolder &holder = 	*(m_lparyLuaValueHolder[0]);
-	return holder;
-}
-
-_luarets::operator const char*()
-{
-	_LuaValueHolder &holder = 	*(m_lparyLuaValueHolder[0]);
-	return holder;
-}
-
-_luarets::operator luatable()
-{
-	_LuaValueHolder &holder = 	*(m_lparyLuaValueHolder[0]);
+	_LuaValueHolder &holder = m_lpLuaMultiValueHolder->operator[](_idx);
 	return holder;
 }

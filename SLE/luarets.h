@@ -1,7 +1,7 @@
 /*******************************************************************************
-* 版权所有(C) 本软件遵循GPL协议。
+* File Header
 * Filename		：luarets.h
-* Author			：ZhaoYu(icyplayer@126.com) <http://www.zhaoyu.me/>
+* Author			：ZhaoYu
 * Create Time ：2009年09月18日 15时32分30秒
 * GUID				：FE09D543-A9DE-425F-A606-AF4193F151BF
 * Comments	：
@@ -12,34 +12,49 @@
 
 namespace sle
 {
+	#define ST(i) arg##i = m_lpLuaMultiValueHolder->operator[](i);
+	#define ST1 ST(1)
+	#define ST2 ST1 ST(2)
+	#define ST3 ST2 ST(3)
+	#define ST4 ST3 ST(4)
+	#define ST5 ST4 ST(5)
+
+	#define DECLARE_GET_METHOD(ARG_NUMBER) \
+		template <DECLARE_TYPENAME##ARG_NUMBER> \
+		void get(DECLARE_REF_ARG##ARG_NUMBER) \
+		{ \
+			ST##ARG_NUMBER \
+		}
 	class _LuaValueHolder;
-	class luaenvironment;
-	class luatable;
-	class EXPORT_CLASS _luarets
+	class _LuaMultiValueHolder;
+	class EXPORT_CLASS luarets
 	{
 	public:
-		_luarets(luaenvironment *lpLuaEvrnt);
-		virtual ~_luarets(void);
+		luarets(const _LuaMultiValueHolder &values);
+		virtual ~luarets(void);
+		//这个operator=是特殊的，用来处理导出函数返回值
+		void operator=(const _LuaMultiValueHolder &rhl);
 	private:
-		//一下两个函数任何情况下都不能调用，因为无意义，所以直接private。
-		_luarets(const _luarets &rhl){}
-		_luarets& operator=(const _luarets &rhl) {return *this;}
+		luarets(const luarets &rhl)		{		}
+		void operator=(const luarets &rhl) {};
 
 	public:
-		virtual void refresh();
 		virtual _LuaValueHolder& operator[](int _idx);
-	public: //一组强制类型转换函数
-		virtual operator int();
-		virtual operator double();
-		virtual operator bool();
-		virtual operator const char*();
-		virtual operator luatable();
+		DECLARE_GET_METHOD(2);
+		DECLARE_GET_METHOD(1);
+		DECLARE_GET_METHOD(3);
+		DECLARE_GET_METHOD(4);
+		DECLARE_GET_METHOD(5);
 
 	protected:
-		virtual void _Init();
+		virtual void _Get(int nCount, ...);
+		virtual void _Hold(int nCount, ...);
+
 	protected:
-		_LuaValueHolder **m_lparyLuaValueHolder;
-		luaenvironment *m_lpLuaEvrnt;
+		//一组地址，指示返回值导出到哪里
+		void **m_lparrySaveTarget;
+		//保存返回值地址的个数
+		int m_nTargetCount;
+		_LuaMultiValueHolder *m_lpLuaMultiValueHolder;
 	};
-	typedef _luarets& luarets;
 }
