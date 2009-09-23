@@ -31,5 +31,8 @@ namespace sle
 #define DECLARE_PROPERTY(_ty, _v, _set, _get) \
 	void _set(_ty _value) { _v = _value; } \
 	_ty _get() { return _v; }
-
+#define DECLARE_PROPERTY_GET(_ty, _v, _get) \
+	_ty _get() { return _v; }
+#define DECLARE_PROPERTY_SET(_ty, _v, _set) \
+	void _set(_ty _value) { _v = _value; }
 }

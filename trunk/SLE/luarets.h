@@ -52,9 +52,9 @@ namespace sle
 
 	protected:
 		//一组地址，指示返回值导出到哪里
-		void **m_lparrySaveTarget;
+		//void **m_lparrySaveTarget;
 		//保存返回值地址的个数
-		int m_nTargetCount;
+		//int m_nTargetCount;
 		_LuaMultiValueHolder *m_lpLuaMultiValueHolder;
 	};
 }
