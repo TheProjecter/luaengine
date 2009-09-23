@@ -1,3 +1,12 @@
+/*******************************************************************************
+* File Header
+* Filename		：_LuaMultiValueHolder.cpp
+* Author			：ZhaoYu
+* Create Time ：2009年09月23日 16时25分38秒
+* GUID				：C0E45520-C7C3-4E49-8CB8-DA0076507675
+* Comments	：
+*******************************************************************************/
+
 #include "StdAfx.h"
 #include "_LuaMultiValueHolder.h"
 #include "lua.hpp"
