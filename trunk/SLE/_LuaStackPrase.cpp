@@ -2,7 +2,7 @@
 * File Header
 * Filename		£ºLuaStackPrase.cpp
 * Author			£ºZhaoYu
-* Create Time	£º2009Äê08ÔÂ17ÈÕ
+* Create Time	£º2009-08-17
 * GUID				£º93D66506-73B4-49EE-B530-D539D0CD2DD8
 * Comments	£º
 *******************************************************************************/

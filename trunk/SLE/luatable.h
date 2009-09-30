@@ -2,7 +2,7 @@
 * File Header
 * Filename		£ºluatable.h
 * Author			£ºZhaoYu
-* Create Time	£º2009Äê08ÔÂ17ÈÕ
+* Create Time	£º2009-08-17
 * GUID				£º64C29307-C658-4590-BF06-5672D7F4CBA1
 * Comments	£º
 *******************************************************************************/

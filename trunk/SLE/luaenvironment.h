@@ -2,7 +2,7 @@
 * File Header
 * Filename		£ºluaenvironment.h
 * Author			£ºZhaoYu
-* Create Time	£º2009Äê08ÔÂ17ÈÕ
+* Create Time	£º2009-08-17
 * GUID				£ºFE8AAFB7-2ADF-47FB-9581-A7A85A29C342
 * Comments	£º
 *******************************************************************************/

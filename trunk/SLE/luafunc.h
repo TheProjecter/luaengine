@@ -2,7 +2,7 @@
 * File Header
 * Filename		£ºluafunc.h
 * Author			£ºZhaoYu
-* Create Time	£º2009Äê08ÔÂ17ÈÕ
+* Create Time	£º2009-08-17
 * GUID				£º4FDD0991-DCF4-48CA-93E0-1B2AE4300075
 * Comments	£º
 *******************************************************************************/

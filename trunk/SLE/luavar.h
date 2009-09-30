@@ -2,7 +2,7 @@
 * File Header
 * Filename		£ºluavar.h
 * Author			£ºZhaoYu
-* Create Time	£º2009Äê08ÔÂ20ÈÕ
+* Create Time	£º2009-08-20
 * GUID				£º631CCA32-B851-4ED0-A02D-416BB02DA3BC
 * Comments	£º
 *******************************************************************************/

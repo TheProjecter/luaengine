@@ -2,7 +2,7 @@
 * File Header
 * Filename		£ºLuaValueHolder.h
 * Author			£ºZhaoYu
-* Create Time	£º2009Äê08ÔÂ17ÈÕ
+* Create Time	£º2009-08-17
 * GUID				£ºFFD574A9-16C5-4E4B-B686-E77985626E0B
 * Comments	£º
 *******************************************************************************/

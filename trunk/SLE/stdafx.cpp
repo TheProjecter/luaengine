@@ -2,7 +2,7 @@
 * File Header
 * Filename		£ºstdafx.cpp
 * Author			£ºZhaoYu
-* Create Time	£º2009Äê08ÔÂ17ÈÕ
+* Create Time	£º2009-08-17
 * GUID				£º8D68FB51-DDD4-416C-8748-7F730BB1C778
 * Comments	£º
 *******************************************************************************/

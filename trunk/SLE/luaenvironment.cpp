@@ -2,7 +2,7 @@
 * File Header
 * Filename		£ºluaenvironment.cpp
 * Author			£ºZhaoYu
-* Create Time	£º2009Äê08ÔÂ17ÈÕ
+* Create Time	£º2009-08-17
 * GUID				£ºBE34DB74-4F6D-419C-B377-961CD4E9B103
 * Comments	£º
 *******************************************************************************/
