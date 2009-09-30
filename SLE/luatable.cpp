@@ -2,7 +2,7 @@
 * File Header
 * Filename		£ºluatable.cpp
 * Author			£ºZhaoYu
-* Create Time	£º2009Äê08ÔÂ17ÈÕ
+* Create Time	£º2009-08-17
 * GUID				£º7AD51E0F-23A2-4D47-A36E-B48F927F5E04
 * Comments	£º
 *******************************************************************************/

@@ -2,7 +2,7 @@
 * File Header
 * Filename		：luarets.h
 * Author			：ZhaoYu
-* Create Time ：2009年09月18日 15时32分30秒
+* Create Time ：2009-09-18 15:32:30
 * GUID				：FE09D543-A9DE-425F-A606-AF4193F151BF
 * Comments	：
 *******************************************************************************/

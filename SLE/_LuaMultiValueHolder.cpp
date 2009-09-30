@@ -2,7 +2,7 @@
 * File Header
 * Filename		：_LuaMultiValueHolder.cpp
 * Author			：ZhaoYu
-* Create Time ：2009年09月23日 16时25分38秒
+* Create Time ：2009-09-23 16:25:38
 * GUID				：C0E45520-C7C3-4E49-8CB8-DA0076507675
 * Comments	：
 *******************************************************************************/

@@ -2,7 +2,7 @@
 * File Header
 * Filename		：sle.h
 * Author			：ZhaoYu
-* Create Time	：2009年08月24日 14时18分29秒
+* Create Time	：2009-08-24 14:18:29
 * GUID				：D9F78ACF-F1BF-48FB-B90C-54EA9FDCA1C7
 * Comments	：
 *******************************************************************************/

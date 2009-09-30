@@ -2,7 +2,7 @@
 * File Header
 * Filename		£ºluaelement.cpp
 * Author			£ºZhaoYu
-* Create Time	£º2009Äê08ÔÂ20ÈÕ
+* Create Time	£º2009-08-20
 * GUID				£º0DC2837B-DA31-4CFB-8E42-D425BF022F46
 * Comments	£º
 *******************************************************************************/

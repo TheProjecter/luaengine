@@ -2,7 +2,7 @@
 * File Header
 * Filename		£ºluafunc.cpp
 * Author			£ºZhaoYu
-* Create Time	£º2009Äê08ÔÂ17ÈÕ
+* Create Time	£º2009-08-17
 * GUID				£º8809F554-D91B-4092-8D5A-BDD6A7709365
 * Comments	£º
 *******************************************************************************/

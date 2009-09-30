@@ -2,7 +2,7 @@
 * File Header
 * Filename		£ºluavar.cpp
 * Author			£ºZhaoYu
-* Create Time	£º2009Äê08ÔÂ20ÈÕ
+* Create Time	£º2009-08-20
 * GUID				£ºB2ABD955-30D0-4B7F-A072-A36FD51303FC
 * Comments	£º
 *******************************************************************************/

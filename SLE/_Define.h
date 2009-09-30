@@ -2,7 +2,7 @@
 * File Header
 * Filename		：_Define.h
 * Author			：ZhaoYu
-* Create Time ：2009年08月25日 11时52分27秒
+* Create Time ：2009-08-25 11:52:27
 * GUID				：F50FDD61-3DAA-4EC1-A97D-C34422993C96
 * Comments	：
 *******************************************************************************/

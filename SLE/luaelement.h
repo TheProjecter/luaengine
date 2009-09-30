@@ -2,7 +2,7 @@
 * File Header
 * Filename		£ºluaelement.h
 * Author			£ºZhaoYu
-* Create Time	£º2009Äê08ÔÂ20ÈÕ
+* Create Time	£º2009-08-20
 * GUID				£º3194A591-A506-4C08-AF6D-51D1AA388F2B
 * Comments	£º
 *******************************************************************************/
