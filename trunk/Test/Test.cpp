@@ -5,6 +5,7 @@
 #include <iostream>
 #include "sle.h"
 #include "lua.hpp"
+#include "time.h"
 #include <string>
 using namespace sle;
 using namespace std;
@@ -187,33 +188,52 @@ bool test8(luaenvironment &e)
 //test return multiple values
 bool test9(luaenvironment &e)
 {
-	int n;
-	luafunc f = e.func("test_rettable");
-	luarets &rets = f();
-	luatable tab = rets[1];
+	int n = 0, nn = 0;
+	luafunc f = e.func("test_rettable", 4);
+	luarets rets = f();
+	luatable tab = rets[0], tab1;
+	//rets.get(tab, n);
 	n = tab[1];
 	RETURN_ON_FAIL(n == 1);
-	n = rets[3];
+	n = rets[2];
 	RETURN_ON_FAIL(n == 10);
-	string s = rets[4];
+	string s = rets[3];
+	RETURN_ON_FAIL(s == "hehe");
+	s = "";
+	rets.get(tab, tab1, nn, s);
+	n = 0;
+	n = tab1[1];
+	RETURN_ON_FAIL(n == 2);
+	RETURN_ON_FAIL(nn == 10);
 	RETURN_ON_FAIL(s == "hehe");
 	return true;
 }
-
-bool (*testfunc[])(luaenvironment&) = {test0, test1, test2, test3, test4, test5, test6, test7, test8, test9};
+bool test10(luaenvironment &e)
+{
+	luafunc f = e.func("print");
+	f("successful!");
+	return true;
+}
+bool (*testfunc[])(luaenvironment&) = {test0, test1, test2, test3, test4, test5, test6, test7, test8, test9, test10};
 void test()
 {
 	luaenvironment e;
 	int n;
 	e.init();
 	n = e.dofile("e:\\temp\\test.lua");
-	for (int i = 0; i <10; i++)
+	/*time_t t = clock();
+	for (int i = 0; i < 10000; ++i)
+	{
+		test10(e);
+	}
+	time_t t1 = clock() - t;*/
+	for (int i = 0; i <= 10; i++)
 	{
 		ASSERT(testfunc[i](e));
 		n = e.gettop();
 		ASSERT(n == 0);
 	}
-	//cout << "Succeed!";
+	//cout << "Succeed!" << endl;
 	//system("pause");
 }
 int _tmain(int argc, _TCHAR* argv[])
